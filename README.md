@@ -7,6 +7,8 @@
 ![Java](https://img.shields.io/badge/java-v1.8-lightgrey.svg)
 </center>
 
-=========================
+
+------
+
 
 Software module for parallel training of convolutional neural networks using DL4J &amp; CUDA.
