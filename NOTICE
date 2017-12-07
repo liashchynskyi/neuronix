@@ -1,0 +1,23 @@
+Neuronix
+Copyright 2017 Petro Liashchynskyi
+
+This product includes software developed at
+The Apache Software Foundation (http://www.apache.org/).
+
+
+The following components are included in this product:
+
+Deeplearning4j - Deeplearning for Java
+https://deeplearning4j.org/
+Copyright 2017 Deeplearning4j Authors.
+Licensed under the Apache License, Version 2.0
+
+Nd4j - N-Dimensional Arrays for Java
+https://nd4j.org/
+Copyright 2017 Nd4j Authors.
+Licensed under the Apache License, Version 2.0
+
+JFoenix - Java Material Design Library
+https://github.com/jfoenixadmin/JFoenix
+Copyright 2014 JFoenix.
+Licensed under the Apache License, Version 2.0
