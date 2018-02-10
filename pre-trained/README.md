@@ -1,10 +1,10 @@
 
 # Pre-trained models
 
-The following models was trained for classification of cytological and histological images. 
+The following models have been trained for classification of cytological and histological images. 
 
 ## Cytology
-The images was splitted into 6 classes:
+The images consist of 6 classes:
 1. *cancer* - cancer
 2. *cyt_fibrozno_kistozna_mastopotia* - fibrocystic mastopathy
 3. *cyt_kist_mast* - cystular mastopathy
