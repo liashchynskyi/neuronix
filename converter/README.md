@@ -18,7 +18,7 @@ root
 └───class1
 │   │   image_c1.png
 │   │   image_c2.png
-│   |subdirectory    
+│   └───subdirectory    
 └───class2
     │   image_c1.png
     │   image_c2.png
