@@ -10,7 +10,7 @@ I wrote the next script for doing this thing. The script supports converting onl
 2. Installed **Pillow** library;
 3. Root directory of your images. 
 
-**The script only works if your root directory contains directories of the image classes inside.**
+**The script only works if your root directory contains directories of the image classes inside.** It is necessary for multithreading executing (one class folder - one thread), after that if class folder also contains the other directories inside - script will work recursively. 
 
 For example:
 ```
