@@ -16,7 +16,7 @@ The images consist of 6 classes:
 | file| accuracy| precision|recall|f1 score| image size|
 | ------------- |---------------| ------|----|---|---|
 | [lenet_a85_p90_r83_f93_c6_is128_t7.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre-trained/lenet_a85_p90_r83_f93_c6_is128_t7.bin)      | 85%| 90%|83%|93%|128 px|
-| [lenet(+c3x3)_a85_p90_r83_f93_c6_is128_t9](https://github.com/liashchynskyi/neuronix/blob/master/pre-trained/lenet(+c3x3)_a85_p90_r83_f93_c6_is128_t9)      | 86%| 90%|83%|93%|128 px|
+| [lenet(+c3x3)_a86_p90_r83_f93_c6_is128_t9](https://github.com/liashchynskyi/neuronix/blob/master/pre-trained/lenet(+c3x3)_a86_p90_r83_f93_c6_is128_t9)      | 86%| 90%|83%|93%|128 px|
 
 
 
