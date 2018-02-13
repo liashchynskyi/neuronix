@@ -13,7 +13,7 @@ The images was splitted into 6 classes:
 6. *cyt_nep_mast* - nonproliferative mastopathy
 
 
-| file| accuracy| precission|recall|f1 score| image size|
+| file| accuracy| precision|recall|f1 score| image size|
 | ------------- |---------------| ------|----|---|---|
 | [lenet_a85_p90_r83_f93_c6_is128_t7.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre-trained/lenet_a85_p90_r83_f93_c6_is128_t7.bin)      | 85%| 90%|83%|93%|128 px|
 
