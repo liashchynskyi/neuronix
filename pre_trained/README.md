@@ -3,7 +3,7 @@
 
 The following models have been trained for classification of cytological and histological images. 
 
-## Cytology
+## Cytology (deprecated)
 The images consist of 6 classes:
 1. *cancer* - cancer
 2. *cyt_fibrozno_kistozna_mastopotia* - fibrocystic mastopathy
@@ -20,7 +20,7 @@ The images consist of 6 classes:
 
 
 
-## Histology
+## Histology (deprecated)
 The images consist of 4 classes:
 1. *histo_fibroadenoma* - fibroadenoma
 2. *histo_fibrozno_kistozna_mastopatia* - fibrocystic mastopathy
@@ -34,7 +34,7 @@ The images consist of 4 classes:
 
 
 
-## Cytology (update)
+## Cytology (updated)
 The images consist of 5 classes:
 1. *cyt_cancer* - cancer
 2. *fibrocystic_mast* - fibrocystic mastopathy
@@ -50,7 +50,7 @@ The images consist of 5 classes:
 | [lenet_02_a100_p100_r100_f100_is128_t2_c.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre_trained/lenet_02_a100_p100_r100_f100_is128_t2_c.bin)      | 100%| 100%|100%|100%|128 px|
 
 
-## Histology (update)
+## Histology (updated)
 The images consist of 5 classes:
 1. *hist_proliferative_mast* - proliferative mastopathy
 2. *histo_fibroadenoma* - fibroadenoma
