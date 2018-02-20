@@ -5,12 +5,12 @@ The following models have been trained for classification of cytological and his
 
 ## File naming (for updated files)
 
-*a* - accuracy (%)
-*p* - precision (%)
-*r* - recall (%)
-*f* - f1 score (%)
-*is* - image size (px)
-*t* - training time on GPU
+ - *a* - accuracy (%)
+ - *p* - precision (%)
+ - *r* - recall (%)
+ - *f* - f1 score (%)
+ - *is* - image size (px)
+ - *t* - training time on GPU
 
 ## Cytology (deprecated)
 The images consist of 6 classes:
