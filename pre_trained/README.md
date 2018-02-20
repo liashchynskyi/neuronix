@@ -10,7 +10,7 @@ The following models have been trained for classification of cytological and his
  - *r* - recall (%)
  - *f* - f1 score (%)
  - *is* - image size (px)
- - *t* - training time on GPU
+ - *t* - training time on GPU (minute(s))
 
 ## Cytology (deprecated)
 The images consist of 6 classes:
@@ -72,5 +72,5 @@ The images consist of 5 classes:
 | ------------- |---------------| ------|----|---|---|
 | [lenet_00_a90_p90_r90_f89_is128_t4_h.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre_trained/lenet_00_a90_p90_r90_f89_is128_t4_h.bin)      | 90%| 90%|90%|89%|128 px|
 | [lenet_01_a92_p93_r93_f92_is128_t3_h.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre_trained/lenet_01_a92_p93_r93_f92_is128_t3_h.bin)      | 92%| 93%|93%|92%|128 px|
-
+| [lenet_02_a93_p93_r93_f93_is128_t2_h.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre_trained/lenet_02_a93_p93_r93_f93_is128_t2_h.bin)      | 93%| 93%|93%|93%|128 px|
 
