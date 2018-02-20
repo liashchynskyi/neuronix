@@ -33,3 +33,35 @@ The images consist of 4 classes:
 | [lenet_a100_p100_r100_f100_is128_t4.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre_trained/lenet_a100_p100_r100_f100_is128_t4.bin)      | 100%| 100%|100%|100%|128 px|
 
 
+
+## Cytology (update)
+The images consist of 5 classes:
+1. *cyt_cancer* - cancer
+2. *fibrocystic_mast* - fibrocystic mastopathy
+3. *non_fibrocystic_mast* - nonproliferative **fibrous** mastopathy
+4. *cet_mastopathy* - mastopathy
+5. *nonproliferative_mast* - nonproliferative mastopathy
+
+
+| file| accuracy| precision|recall|f1 score| image size|
+| ------------- |---------------| ------|----|---|---|
+| [lenet_00_a100_p100_r100_f100_is128_t3_c.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre_trained/lenet_00_a100_p100_r100_f100_is128_t3_c.bin)      | 100%| 100%|100%|100%|128 px|
+| [lenet_01_a90_p93_r90_f89_is128_t3_c.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre_trained/lenet_01_a90_p93_r90_f89_is128_t3_c.bin)      | 90%| 93%|90%|89%|128 px|
+| [lenet_02_a100_p100_r100_f100_is128_t2_c.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre_trained/lenet_02_a100_p100_r100_f100_is128_t2_c.bin)      | 100%| 100%|100%|100%|128 px|
+
+
+## Histology (update)
+The images consist of 5 classes:
+1. *hist_proliferative_mast* - proliferative mastopathy
+2. *histo_fibroadenoma* - fibroadenoma
+3. *histo_fibrozno_kistozna_mastopatia* - fibrocystic mastopathy
+4. *histo_lystovydna_fibroadenoma* - leaf-shaped fibroadenoma
+5. *histo_neproliferatyvna_mastopatia* - nonproliferative mastopathy
+
+
+| file| accuracy| precision|recall|f1 score| image size|
+| ------------- |---------------| ------|----|---|---|
+| [lenet_00_a90_p90_r90_f89_is128_t4_h.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre_trained/lenet_00_a90_p90_r90_f89_is128_t4_h.bin)      | 90%| 90%|90%|89%|128 px|
+| [lenet_01_a92_p93_r93_f92_is128_t3_h.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre_trained/lenet_01_a92_p93_r93_f92_is128_t3_h.bin)      | 92%| 93%|93%|92%|128 px|
+
+
