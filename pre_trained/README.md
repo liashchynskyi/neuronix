@@ -28,7 +28,6 @@ The images consist of 6 classes:
 | [lenet(+c3x3)_a86_p90_r83_f93_c6_is128_t9.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre_trained/lenet(+c3x3)_a86_p90_r83_f93_c6_is128_t9.bin)      | 86%| 90%|83%|93%|128 px|
 
 
-
 ## Histology (deprecated)
 The images consist of 4 classes:
 1. *histo_fibroadenoma* - fibroadenoma
@@ -57,7 +56,7 @@ The images consist of 5 classes:
 | [lenet_00_a100_p100_r100_f100_is128_t3_c.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre_trained/lenet_00_a100_p100_r100_f100_is128_t3_c.bin)      | 100%| 100%|100%|100%|128 px|
 | [lenet_01_a90_p93_r90_f89_is128_t3_c.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre_trained/lenet_01_a90_p93_r90_f89_is128_t3_c.bin)      | 90%| 93%|90%|89%|128 px|
 | [lenet_02_a100_p100_r100_f100_is128_t2_c.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre_trained/lenet_02_a100_p100_r100_f100_is128_t2_c.bin)      | 100%| 100%|100%|100%|128 px|
-
+| [lenet_00_a90_p93_r90_f89_is224_t11_c.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre_trained/lenet_00_a90_p93_r90_f89_is224_t11_c.bin)      | 90%| 93%|90%|89%|224 px|
 
 ## Histology (updated)
 The images consist of 5 classes:
