@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:controller="controllers.MainController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="490.0" prefHeight="32.0" prefWidth="510.0" style="-fx-background-color: #2F3E46;">
+         <children>
+            <Label contentDisplay="CENTER" prefHeight="32.0" prefWidth="268.0" text="Прогрес" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </Label>
+            <JFXButton fx:id="close" alignment="CENTER" graphicTextGap="0.0" layoutX="478.0" prefHeight="32.0" prefWidth="32.0">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" size="15" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="minimize" alignment="CENTER" graphicTextGap="0.0" layoutX="442.0" layoutY="2.0" prefHeight="32.0" prefWidth="32.0">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="MINUS" size="15" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </Pane>
+      <AnchorPane fx:id="defaultPane2" layoutX="223.0" prefHeight="600.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
+         <children>
+            <Pane prefHeight="32.0" prefWidth="268.0" style="-fx-background-color: #7C676B;" />
+            <Label fx:id="openLabel_2P" alignment="CENTER" layoutX="10.0" layoutY="161.0" prefHeight="20.0" prefWidth="251.0" text="Проект з відкритим вихідним кодом" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="72.0" layoutY="185.0" prefHeight="20.0" prefWidth="125.0" text="Neuronix" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="71.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <FontAwesomeIconView fill="WHITE" glyphName="ANGLE_DOUBLE_DOWN" layoutX="124.0" layoutY="249.0" size="32" textAlignment="CENTER" />
+            <Hyperlink fx:id="developerLink_2P" alignment="CENTER" layoutX="4.0" layoutY="276.0" prefHeight="23.0" prefWidth="259.0" text="Розроблений Петром Лящинським" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" />
+            <Hyperlink fx:id="copyLink_2P" alignment="CENTER" layoutX="39.0" layoutY="542.0" prefHeight="23.0" prefWidth="194.0" text="© ТНЕУ, ФКІТ, КІ - 2018" textAlignment="CENTER" textFill="#c6c0c0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0" />
+            <Hyperlink alignment="CENTER" layoutX="79.0" layoutY="369.0" textAlignment="CENTER" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="GITHUB_SQUARE" size="24" textAlignment="CENTER" />
+               </graphic>
+            </Hyperlink>
+            <Hyperlink alignment="CENTER" layoutX="120.0" layoutY="369.0" textAlignment="CENTER" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="FACEBOOK_SQUARE" size="24" textAlignment="CENTER" />
+               </graphic>
+            </Hyperlink>
+            <Hyperlink alignment="CENTER" layoutX="161.0" layoutY="369.0" textAlignment="CENTER" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="LINKEDIN_SQUARE" size="24" textAlignment="CENTER" />
+               </graphic>
+            </Hyperlink>
+            <MaterialDesignIconView fill="WHITE" glyphName="BRIGHTNESS_7" layoutX="119.0" layoutY="114.0" size="32" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="menuPane" prefHeight="600.0" prefWidth="223.0" style="-fx-background-color: #8e4a49;">
+         <children>
+            <Pane prefHeight="32.0" prefWidth="223.0" style="-fx-background-color: #985A59;" />
+            <JFXButton fx:id="configBtn_1P" alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="15.0" layoutY="204.0" prefHeight="41.0" prefWidth="194.0" text="НАЛАШТУВАННЯ" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="GEARS" size="15" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="trainBtn_1P" alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="15.0" layoutY="257.0" prefHeight="41.0" prefWidth="194.0" text="НАВЧАННЯ" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="LINE_CHART" size="15" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="classBtn_1P" alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="15.0" layoutY="310.0" prefHeight="41.0" prefWidth="194.0" text="КЛАСИФІКАЦІЯ" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CROSSHAIRS" size="15" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="defaultPane3" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;" />
+      <AnchorPane fx:id="trainPane2" layoutX="223.0" prefHeight="600.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
+         <children>
+            <Pane prefHeight="32.0" prefWidth="268.0" style="-fx-background-color: #7C676B;">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutY="-1.0" prefHeight="32.0" prefWidth="268.0" text="Навчання" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="trainPane3" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;" />
+   </children>
+</AnchorPane>
