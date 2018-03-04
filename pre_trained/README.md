@@ -1,7 +1,7 @@
 
 # Pre-trained models
 
-The following models have been trained for classification of cytological and histological images. 
+The following models have been trained for classification of cytological and histological images. The following table contains model scores after **evaluating of test data (15% of all data)** not classification.
 
 ## File naming (for updated files)
 
@@ -59,6 +59,8 @@ The images consist of 5 classes:
 | [lenet_00_a90_p93_r90_f89_is224_t11_c.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre_trained/lenet_00_a90_p93_r90_f89_is224_t11_c.bin)      | 90%| 93%|90%|89%|224 px|
 | [lenet_01_a100_p100_r100_f100_is224_t10_c.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre_trained/lenet_01_a100_p100_r100_f100_is224_t10_c.bin)      | 100%| 100%|100%|100%|224 px|
 | [lenet_02_a100_p100_r100_f100_is224_t9_c.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre_trained/lenet_02_a100_p100_r100_f100_is224_t9_c.bin)      | 100%| 100%|100%|100%|224 px|
+| [lenet_20_a90_p93_r90_f89_is224_t20_c.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre_trained/lenet_20_a90_p93_r90_f89_is224_c.bin)      | 90%| 93%|90%|89%|224 px|
+| [lenet_21_a90_p93_r90_f89_is224_t4_c.bin](https://github.com/liashchynskyi/neuronix/blob/master/pre_trained/lenet_20_a90_p93_r90_f89_is224_c.bin)      | 90%| 93%|90%|89%|224 px|
 
 ## Histology (updated)
 The images consist of 5 classes:
