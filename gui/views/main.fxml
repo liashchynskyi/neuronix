@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-border-radius: 3; -fx-background-radius: 3;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
    <children>
-      <Pane layoutX="490.0" prefHeight="32.0" prefWidth="510.0" style="-fx-background-color: #2F3E46;">
+      <Pane layoutX="490.0" prefHeight="32.0" prefWidth="510.0" style="-fx-background-color: #6d565b;">
          <children>
             <Label fx:id="descriptionOfThirdSection" contentDisplay="CENTER" prefHeight="32.0" prefWidth="268.0" textAlignment="CENTER" textFill="WHITE">
                <font>
@@ -23,15 +23,18 @@
                   <Insets left="30.0" />
                </padding>
             </Label>
-            <JFXButton fx:id="close" alignment="CENTER" graphicTextGap="0.0" layoutX="478.0" prefHeight="32.0" prefWidth="32.0">
+            <JFXButton fx:id="close" alignment="CENTER" graphicTextGap="0.0" layoutX="480.0" prefHeight="32.0" prefWidth="32.0" text=" ">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" size="15" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="minimize" alignment="CENTER" graphicTextGap="0.0" layoutX="442.0" layoutY="2.0" prefHeight="32.0" prefWidth="32.0">
+            <JFXButton fx:id="minimize" alignment="CENTER" graphicTextGap="0.0" layoutX="448.0" prefHeight="32.0" prefWidth="32.0" text=" ">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="MINUS" size="15" />
                </graphic>
+               <padding>
+                  <Insets top="7.0" />
+               </padding>
             </JFXButton>
          </children>
       </Pane>
@@ -90,7 +93,10 @@
          </children>
       </AnchorPane>
       <AnchorPane fx:id="trainPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;" />
-      <AnchorPane fx:id="trainPaneSection3" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;" />
+      <AnchorPane fx:id="trainPaneSection3" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;">
+         <children>
+            <Pane fx:id="flowScores" layoutY="438.0" prefHeight="127.0" prefWidth="510.0" />
+         </children></AnchorPane>
       <AnchorPane fx:id="classifierPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;" />
       <AnchorPane fx:id="classifierPaneSection3" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;" />
       <AnchorPane fx:id="configPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;" />
