@@ -1,7 +1,7 @@
 
 # Pre-trained models
 
-The following models have been trained for classification of cytological and histological images. The following table contains model scores after **evaluation of the test data (15% of all data)**. ***Those percents are not about classification scores***. Classification scores start from 55% to 100%. **For a higher accuracy of the classification, choose a model with more training time and higher number of epochs.**
+The following models have been trained for classification of cytological and histological images. The following table contains model scores after **evaluation of the test data (15% of all data)**. ***Those scores are not about classification scores***. Classification scores start from 55% to 100%. **For a higher accuracy of the classification, choose a model with more training time and higher number of epochs.**
 
 ## File naming (for updated files)
 
