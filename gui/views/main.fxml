@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-border-radius: 3; -fx-background-radius: 3;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-border-radius: 3; -fx-background-radius: 3; -fx-background-color: #755c62;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
    <children>
       <Pane layoutX="490.0" prefHeight="32.0" prefWidth="510.0" style="-fx-background-color: #6d565b;">
          <children>
@@ -92,15 +92,50 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="trainPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;" />
+      <AnchorPane fx:id="trainPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
+         <children>
+            <Label text="Sec2T" textFill="WHITE">
+               <font>
+                  <Font size="72.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
       <AnchorPane fx:id="trainPaneSection3" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;">
          <children>
             <Pane fx:id="flowScores" layoutY="438.0" prefHeight="127.0" prefWidth="510.0" />
          </children></AnchorPane>
-      <AnchorPane fx:id="classifierPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;" />
-      <AnchorPane fx:id="classifierPaneSection3" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;" />
-      <AnchorPane fx:id="configPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;" />
-      <AnchorPane fx:id="configPaneSection3" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;" />
+      <AnchorPane fx:id="classifierPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
+         <children>
+            <Label text="Sec2C" textFill="WHITE">
+               <font>
+                  <Font size="72.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <AnchorPane fx:id="classifierPaneSection3" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;">
+         <children>
+            <Label text="Section 3 Classifier" textFill="WHITE">
+               <font>
+                  <Font size="72.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <AnchorPane fx:id="configPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
+         <children>
+            <Label text="Sec2CO" textFill="WHITE">
+               <font>
+                  <Font size="72.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <AnchorPane fx:id="configPaneSection3" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;">
+         <children>
+            <Label text="Section 3 Config" textFill="WHITE">
+               <font>
+                  <Font size="72.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
       <AnchorPane fx:id="defaultPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
          <children>
             <Label fx:id="projectDescription" alignment="CENTER" layoutX="10.0" layoutY="161.0" prefHeight="20.0" prefWidth="251.0" text="Проект з відкритим вихідним кодом" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0">
@@ -141,6 +176,11 @@
                   <Insets left="30.0" />
                </padding>
             </JFXTextArea>
+            <Label layoutX="26.0" layoutY="157.0" text="Section 3 Default" textFill="WHITE">
+               <font>
+                  <Font size="72.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

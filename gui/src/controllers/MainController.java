@@ -7,11 +7,13 @@ import eu.hansolo.medusa.Gauge;
 import eu.hansolo.medusa.GaugeBuilder;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.TileBuilder;
+import eu.hansolo.tilesfx.chart.ChartData;
 import eu.hansolo.tilesfx.tools.FlowGridPane;
 import io.reactivex.Observable;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -25,6 +27,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.paint.Stop;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 import org.slf4j.Logger;
@@ -79,6 +82,8 @@ public class MainController implements Initializable {
                         trainPaneSection3,
                         classifierPaneSection2,
                         classifierPaneSection3;
+    @FXML
+    private Pane flowScores;
 
     //Console Text Area
     @FXML
@@ -91,24 +96,25 @@ public class MainController implements Initializable {
 
     //Logger
     protected final Logger log = LoggerFactory.getLogger(MainController.class);
-    //protected RxLogger rx = new RxLogger(log);
+
     //Stack for switching the order of the panes
-    public int counter = 0;
-    @FXML
-    private Pane flowScores;
-
-    private Gauge slimGauge;
-    private Tile slimTile;
-    private Gauge slimGauge2, slimGauge3, slimGauge4, slimGauge5, slimGauge6;
-    private Tile slimTile2, slimTile3, slimTile4, slimTile5, slimTile6;
-
-
-
-
     Stack<AnchorPane> stackS2 = new Stack<>();
     Stack<AnchorPane> stackS3 = new Stack<>();
 
+    //Gauges
+    private Gauge slimGauge;
+    private Tile slimTile;
+    private Gauge slimGauge3, slimGauge4, slimGauge5, slimGauge6;
+    private Tile slimTile2, slimTile3, slimTile4, slimTile5, slimTile6;
+
+
+    TranslateTransition openNav3;//=new TranslateTransition(new Duration(350), defaultPaneSection2);
+    TranslateTransition openNav2;//=new TranslateTransition(new Duration(350), defaultPaneSection2);
+
+
     OperatingSystemMXBean bean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);
+
+
     private Gauge createGauge(final Gauge.SkinType TYPE, int size, double max, String unit) {
         return GaugeBuilder.create()
                 .skinType(TYPE)
@@ -118,12 +124,12 @@ public class MainController implements Initializable {
                 .valueColor(Color.web("#ffffff"))
                 .unitColor(Color.web("#ffffff"))
                 .barColor(Tile.ORANGE)
-                .needleColor(Tile.FOREGROUND)
+                .needleColor(Color.web("#ffffff"))
                 .barBackgroundColor(Color.web("#8e4a49"))
-                .tickLabelColor(Tile.GRAY)
-                .majorTickMarkColor(Tile.FOREGROUND)
-                .minorTickMarkColor(Tile.FOREGROUND)
-                .mediumTickMarkColor(Tile.FOREGROUND)
+                .tickLabelColor(Color.web("#ffffff"))
+                .majorTickMarkColor(Color.web("#ffffff"))
+                .minorTickMarkColor(Color.web("#ffffff"))
+                .mediumTickMarkColor(Color.web("#ffffff"))
                 .backgroundPaint(Paint.valueOf("#755c62"))
                 .maxValue(max)
                 .build();
@@ -143,18 +149,19 @@ public class MainController implements Initializable {
                 .startFromZero(true)
                 .graphic(slimGauge)
                 .build();
-        slimGauge2 = createGauge(Gauge.SkinType.SLIM, 255, bean.getTotalPhysicalMemorySize() / 1048576.00 / 1024.00, "GB");
+
         slimTile2  = TileBuilder.create()
                 .prefSize(255, 255)
-                .skinType(Tile.SkinType.CUSTOM)
+                .skinType(Tile.SkinType.HIGH_LOW)
                 .backgroundColor(Color.web("#755c62"))
                 .title("Використання ОЗУ")
                 .titleAlignment(TextAlignment.CENTER)
-                .startFromZero(false)
-                .graphic(slimGauge2)
+                .unit("GB")
+                .minValue(0)
+                .maxValue(bean.getTotalPhysicalMemorySize() / 1048576.00 / 1024.00)
                 .build();
 
-        slimGauge3 = createGauge(Gauge.SkinType.SLIM, 127, 100.00, "%");
+        slimGauge3 = createGauge(Gauge.SkinType.SPACE_X, 127, 100.00, "%");
         slimTile3  = TileBuilder.create()
                 .prefSize(127, 127)
                 .skinType(Tile.SkinType.CUSTOM)
@@ -166,7 +173,7 @@ public class MainController implements Initializable {
                 .graphic(slimGauge3)
                 .build();
 
-        slimGauge4 = createGauge(Gauge.SkinType.SLIM, 127, 100.00, "%");
+        slimGauge4 = createGauge(Gauge.SkinType.SPACE_X, 127, 100.00, "%");
         slimTile4  = TileBuilder.create()
                 .prefSize(127, 127)
                 .skinType(Tile.SkinType.CUSTOM)
@@ -177,7 +184,7 @@ public class MainController implements Initializable {
                 .textSize(Tile.TextSize.BIGGER)
                 .graphic(slimGauge4)
                 .build();
-        slimGauge5 = createGauge(Gauge.SkinType.SLIM, 127, 100.00, "%");
+        slimGauge5 = createGauge(Gauge.SkinType.SPACE_X, 127, 100.00, "%");
         slimTile5  = TileBuilder.create()
                 .prefSize(127, 127)
                 .skinType(Tile.SkinType.CUSTOM)
@@ -189,7 +196,7 @@ public class MainController implements Initializable {
                 .graphic(slimGauge5)
                 .build();
 
-        slimGauge6 = createGauge(Gauge.SkinType.SLIM, 127, 100.00, "%");
+        slimGauge6 = createGauge(Gauge.SkinType.SPACE_X, 127, 100.00, "%");
         slimTile6  = TileBuilder.create()
                 .prefSize(127, 127)
                 .skinType(Tile.SkinType.CUSTOM)
@@ -224,12 +231,39 @@ public class MainController implements Initializable {
         stackS2.push(defaultPaneSection2);
         stackS3.push(defaultPaneSection3);
 
+        configPaneSection3.setTranslateX(configPaneSection3.getPrefWidth());
+        trainPaneSection3.setTranslateX(trainPaneSection3.getPrefWidth());
+        classifierPaneSection3.setTranslateX(classifierPaneSection3.getPrefWidth());
+
+        configPaneSection2.setTranslateY(configPaneSection2.getPrefHeight() + 32);
+        trainPaneSection2.setTranslateY(trainPaneSection2.getPrefHeight() + 32);
+        classifierPaneSection2.setTranslateY(classifierPaneSection2.getPrefHeight() + 32);
+
+
+
         close.setOnAction(e -> {
             Platform.exit();
         });
 
+         //510 0
+//        TranslateTransition openNav=new TranslateTransition(new Duration(350), flowScores);
+//        TranslateTransition closeNav=new TranslateTransition(new Duration(350), flowScores);
+         //510
         minimize.setOnAction(e -> {
 
+//                if(defaultPaneSection2.getTranslateY() != 0){ //510 0
+//                    openNav.setToY(0);  //0 prefWi
+//                    openNav.play();
+//                }else{
+//                    openNav.play();
+//                }
+
+//            if(flowScores.getTranslateY()!=0){ //510
+//                openNav.play();
+//            }else{
+//                closeNav.setToY(flowScores.getHeight());  //0
+//                closeNav.play();
+//            }
 //            Stage stage = (Stage)((JFXButton)e.getSource()).getScene().getWindow();
 //            stage.setIconified(true);
 
@@ -240,68 +274,71 @@ public class MainController implements Initializable {
 //                    }));
 //            timeline.setCycleCount(Animation.INDEFINITE);
 //            timeline.play();
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    Timeline timeline = new Timeline(new KeyFrame(
-                            Duration.millis(1000),
-                            ae -> {
-                                if (slimGauge.getValue() == 100)
-                                {
-                                    slimGauge3.setValue(97.7);
-                                    slimGauge4.setValue(99.9);
-                                    slimGauge5.setValue(95.6);
-                                    slimGauge6.setValue(96.01);
-                                    slimGauge.stop();
-
-                                }
-                                else
-                                    slimGauge.setValue(slimGauge.getValue() + 20);
 
 
-                            }));
-                    timeline.setCycleCount(Animation.INDEFINITE);
-                    timeline.play();
-                }
-            }).run();
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    Timeline timeline = new Timeline(new KeyFrame(
-                            Duration.millis(100),
-                            ae -> {
 
-                                long totalMem = bean.getTotalPhysicalMemorySize();
-                                long freeMem = bean.getFreePhysicalMemorySize();
-                                double usageMem = (totalMem - freeMem) / 1048576.00; // in GB
-
-                                slimGauge2.setValue(usageMem / 1024.00);
-                            }));
-                    timeline.setCycleCount(Animation.INDEFINITE);
-                    timeline.play();
-                }
-            }).run();
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    Timeline timeline = new Timeline(new KeyFrame(
+//                            Duration.millis(1000),
+//                            ae -> {
+//                                if (slimGauge.getValue() >= 100)
+//                                {
+//                                    slimGauge3.setValue(97.7);
+//                                    slimGauge4.setValue(99.9);
+//                                    slimGauge5.setValue(95.6);
+//                                    slimGauge6.setValue(96.01);
+//                                    slimGauge.stop();
+//
+//                                }
+//                                else
+//                                    slimGauge.setValue(slimGauge.getValue() + 1.15);
+//
+//
+//                            }));
+//                    timeline.setCycleCount(Animation.INDEFINITE);
+//                    timeline.play();
+//                }
+//            }).run();
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    Timeline timeline = new Timeline(new KeyFrame(
+//                            Duration.millis(2500),
+//                            ae -> {
+//
+//                                long totalMem = bean.getTotalPhysicalMemorySize();
+//                                long freeMem = bean.getFreePhysicalMemorySize();
+//                                double usageMem = (totalMem - freeMem) / 1048576.00; // in GB
+//
+//                                slimTile2.setValue(usageMem / 1024.00);
+//                            }));
+//                    timeline.setCycleCount(Animation.INDEFINITE);
+//                    timeline.play();
+//                }
+//            }).run();
         });
 
         config.setOnAction(e -> {
             Utils.switchPane(   configPaneSection2, configPaneSection3,
                                 stackS2, stackS3,
                                 CONFIG, "Ntcn",
-                                descriptionOfSecondSection, descriptionOfThirdSection   );
+                                descriptionOfSecondSection, descriptionOfThirdSection, openNav3, openNav2   );
         });
 
         train.setOnAction(e -> {
             Utils.switchPane(   trainPaneSection2, trainPaneSection3,
                                 stackS2, stackS3,
                                 TRAINING, "sdf",
-                                descriptionOfSecondSection, descriptionOfThirdSection   );
+                                descriptionOfSecondSection, descriptionOfThirdSection, openNav3, openNav2   );
         });
 
         classifier.setOnAction(e -> {
             Utils.switchPane(   classifierPaneSection2, classifierPaneSection3,
                                 stackS2, stackS3,
                                 CLASSIFICATION, "Ntcn",
-                                descriptionOfSecondSection, descriptionOfThirdSection   );
+                                descriptionOfSecondSection, descriptionOfThirdSection, openNav3, openNav2    );
         });
 
     }
