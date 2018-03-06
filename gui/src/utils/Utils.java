@@ -1,12 +1,17 @@
 package utils;
 
 import com.jfoenix.controls.JFXTextArea;
+import eu.hansolo.medusa.Gauge;
+import eu.hansolo.medusa.GaugeBuilder;
+import eu.hansolo.tilesfx.Tile;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 
 import java.io.OutputStream;
@@ -69,15 +74,31 @@ public class Utils {
             open2.play();
             hide2.play();
         }
-//        if (pane2.getTranslateY() != 0) {
-//
-//        }
-
     }
 
     public static void setLogger(JFXTextArea console) {
         os = new TextAreaOutputStream(console);
         StreamAppender.setStaticOutputStream(os);
+    }
+
+    public static Gauge createGauge(final Gauge.SkinType TYPE, int size, double max, String unit) {
+        return GaugeBuilder.create()
+                .skinType(TYPE)
+                .prefSize(size, size)
+                .animated(true)
+                .unit(unit)
+                .valueColor(Color.web("#ffffff"))
+                .unitColor(Color.web("#ffffff"))
+                .barColor(Tile.ORANGE)
+                .needleColor(Color.web("#ffffff"))
+                .barBackgroundColor(Color.web("#8e4a49"))
+                .tickLabelColor(Color.web("#ffffff"))
+                .majorTickMarkColor(Color.web("#ffffff"))
+                .minorTickMarkColor(Color.web("#ffffff"))
+                .mediumTickMarkColor(Color.web("#ffffff"))
+                .backgroundPaint(Paint.valueOf("#755c62"))
+                .maxValue(max)
+                .build();
     }
 
 }

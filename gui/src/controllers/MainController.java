@@ -29,6 +29,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.paint.Stop;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +44,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Stack;
 
+import static utils.Utils.createGauge;
 
 
 public class MainController implements Initializable {
@@ -102,55 +104,34 @@ public class MainController implements Initializable {
     Stack<AnchorPane> stackS3 = new Stack<>();
 
     //Gauges
-    private Gauge slimGauge;
-    private Tile slimTile;
-    private Gauge slimGauge3, slimGauge4, slimGauge5, slimGauge6;
-    private Tile slimTile2, slimTile3, slimTile4, slimTile5, slimTile6;
+    private Gauge   trainingGauge, accuracyGauge, precisionGauge,
+                    recallGauge, f1Gauge;
+    private Tile    trainingTile,ramUsesTile, accuracyTile, precisionTile,
+                    recallTile, f1Tile;
 
+    //Transition for pane animations
+    TranslateTransition openNav3;
+    TranslateTransition openNav2;
 
-    TranslateTransition openNav3;//=new TranslateTransition(new Duration(350), defaultPaneSection2);
-    TranslateTransition openNav2;//=new TranslateTransition(new Duration(350), defaultPaneSection2);
-
-
+    //Bean for getting info about system
     OperatingSystemMXBean bean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);
-
-
-    private Gauge createGauge(final Gauge.SkinType TYPE, int size, double max, String unit) {
-        return GaugeBuilder.create()
-                .skinType(TYPE)
-                .prefSize(size, size)
-                .animated(true)
-                .unit(unit)
-                .valueColor(Color.web("#ffffff"))
-                .unitColor(Color.web("#ffffff"))
-                .barColor(Tile.ORANGE)
-                .needleColor(Color.web("#ffffff"))
-                .barBackgroundColor(Color.web("#8e4a49"))
-                .tickLabelColor(Color.web("#ffffff"))
-                .majorTickMarkColor(Color.web("#ffffff"))
-                .minorTickMarkColor(Color.web("#ffffff"))
-                .mediumTickMarkColor(Color.web("#ffffff"))
-                .backgroundPaint(Paint.valueOf("#755c62"))
-                .maxValue(max)
-                .build();
-    }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        slimGauge = createGauge(Gauge.SkinType.SLIM, 255, 100.00, "%");
-        slimTile  = TileBuilder.create()
+        trainingGauge = createGauge(Gauge.SkinType.SLIM, 255, 100.00, "%");
+        trainingTile  = TileBuilder.create()
                 .prefSize(255, 255)
                 .backgroundColor(Color.web("#755c62"))
                 .skinType(Tile.SkinType.CUSTOM)
                 .title("Процес навчання")
                 .titleAlignment(TextAlignment.CENTER)
                 .startFromZero(true)
-                .graphic(slimGauge)
+                .graphic(trainingGauge)
                 .build();
 
-        slimTile2  = TileBuilder.create()
+        ramUsesTile  = TileBuilder.create()
                 .prefSize(255, 255)
                 .skinType(Tile.SkinType.HIGH_LOW)
                 .backgroundColor(Color.web("#755c62"))
@@ -161,8 +142,8 @@ public class MainController implements Initializable {
                 .maxValue(bean.getTotalPhysicalMemorySize() / 1048576.00 / 1024.00)
                 .build();
 
-        slimGauge3 = createGauge(Gauge.SkinType.SPACE_X, 127, 100.00, "%");
-        slimTile3  = TileBuilder.create()
+        accuracyGauge = createGauge(Gauge.SkinType.SPACE_X, 127, 100.00, "%");
+        accuracyTile  = TileBuilder.create()
                 .prefSize(127, 127)
                 .skinType(Tile.SkinType.CUSTOM)
                 .backgroundColor(Color.web("#755c62"))
@@ -170,11 +151,11 @@ public class MainController implements Initializable {
                 .titleAlignment(TextAlignment.CENTER)
                 .startFromZero(true)
                 .textSize(Tile.TextSize.BIGGER)
-                .graphic(slimGauge3)
+                .graphic(accuracyGauge)
                 .build();
 
-        slimGauge4 = createGauge(Gauge.SkinType.SPACE_X, 127, 100.00, "%");
-        slimTile4  = TileBuilder.create()
+        precisionGauge = createGauge(Gauge.SkinType.SPACE_X, 127, 100.00, "%");
+        precisionTile  = TileBuilder.create()
                 .prefSize(127, 127)
                 .skinType(Tile.SkinType.CUSTOM)
                 .backgroundColor(Color.web("#755c62"))
@@ -182,10 +163,11 @@ public class MainController implements Initializable {
                 .titleAlignment(TextAlignment.CENTER)
                 .startFromZero(true)
                 .textSize(Tile.TextSize.BIGGER)
-                .graphic(slimGauge4)
+                .graphic(precisionGauge)
                 .build();
-        slimGauge5 = createGauge(Gauge.SkinType.SPACE_X, 127, 100.00, "%");
-        slimTile5  = TileBuilder.create()
+
+        recallGauge = createGauge(Gauge.SkinType.SPACE_X, 127, 100.00, "%");
+        recallTile  = TileBuilder.create()
                 .prefSize(127, 127)
                 .skinType(Tile.SkinType.CUSTOM)
                 .backgroundColor(Color.web("#755c62"))
@@ -193,11 +175,11 @@ public class MainController implements Initializable {
                 .titleAlignment(TextAlignment.CENTER)
                 .startFromZero(true)
                 .textSize(Tile.TextSize.BIGGER)
-                .graphic(slimGauge5)
+                .graphic(recallGauge)
                 .build();
 
-        slimGauge6 = createGauge(Gauge.SkinType.SPACE_X, 127, 100.00, "%");
-        slimTile6  = TileBuilder.create()
+        f1Gauge = createGauge(Gauge.SkinType.SPACE_X, 127, 100.00, "%");
+        f1Tile  = TileBuilder.create()
                 .prefSize(127, 127)
                 .skinType(Tile.SkinType.CUSTOM)
                 .backgroundColor(Color.web("#755c62"))
@@ -205,11 +187,11 @@ public class MainController implements Initializable {
                 .titleAlignment(TextAlignment.CENTER)
                 .startFromZero(true)
                 .textSize(Tile.TextSize.BIGGER)
-                .graphic(slimGauge6)
+                .graphic(f1Gauge)
                 .build();
 
-        FlowGridPane scores = new FlowGridPane(4, 1, slimTile3, slimTile4, slimTile5, slimTile6);
-        FlowGridPane ampls = new FlowGridPane(2, 1, slimTile, slimTile2);
+        FlowGridPane scores = new FlowGridPane(4, 1, accuracyTile, precisionTile, recallTile, f1Tile);
+        FlowGridPane ampls = new FlowGridPane(2, 1, trainingTile, ramUsesTile);
 
         trainPaneSection3.getChildren().add(ampls);
         flowScores.getChildren().add(scores);
@@ -217,16 +199,9 @@ public class MainController implements Initializable {
 
 
 
-        Utils.setLogger(console);
 
-//        Utils.logProperty().addListener((observable, oldValue, newValue) -> {
-//            Platform.runLater(new Runnable() {
-//                @Override
-//                public void run() {
-//                    console.appendText(newValue + "\n");
-//                }
-//            });
-//        });
+
+
 
         stackS2.push(defaultPaneSection2);
         stackS3.push(defaultPaneSection3);
@@ -245,27 +220,11 @@ public class MainController implements Initializable {
             Platform.exit();
         });
 
-         //510 0
-//        TranslateTransition openNav=new TranslateTransition(new Duration(350), flowScores);
-//        TranslateTransition closeNav=new TranslateTransition(new Duration(350), flowScores);
-         //510
         minimize.setOnAction(e -> {
 
-//                if(defaultPaneSection2.getTranslateY() != 0){ //510 0
-//                    openNav.setToY(0);  //0 prefWi
-//                    openNav.play();
-//                }else{
-//                    openNav.play();
-//                }
 
-//            if(flowScores.getTranslateY()!=0){ //510
-//                openNav.play();
-//            }else{
-//                closeNav.setToY(flowScores.getHeight());  //0
-//                closeNav.play();
-//            }
-//            Stage stage = (Stage)((JFXButton)e.getSource()).getScene().getWindow();
-//            stage.setIconified(true);
+            Stage stage = (Stage)((JFXButton)e.getSource()).getScene().getWindow();
+            stage.setIconified(true);
 
 //            Timeline timeline = new Timeline(new KeyFrame(
 //                    Duration.millis(1500),
@@ -285,10 +244,10 @@ public class MainController implements Initializable {
 //                            ae -> {
 //                                if (slimGauge.getValue() >= 100)
 //                                {
-//                                    slimGauge3.setValue(97.7);
-//                                    slimGauge4.setValue(99.9);
-//                                    slimGauge5.setValue(95.6);
-//                                    slimGauge6.setValue(96.01);
+//                                    accuracyGauge.setValue(97.7);
+//                                    precisionGauge.setValue(99.9);
+//                                    recallGauge.setValue(95.6);
+//                                    f1Gauge.setValue(96.01);
 //                                    slimGauge.stop();
 //
 //                                }
@@ -312,7 +271,7 @@ public class MainController implements Initializable {
 //                                long freeMem = bean.getFreePhysicalMemorySize();
 //                                double usageMem = (totalMem - freeMem) / 1048576.00; // in GB
 //
-//                                slimTile2.setValue(usageMem / 1024.00);
+//                                ramUsesTile.setValue(usageMem / 1024.00);
 //                            }));
 //                    timeline.setCycleCount(Animation.INDEFINITE);
 //                    timeline.play();
