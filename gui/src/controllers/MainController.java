@@ -20,6 +20,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -190,16 +191,12 @@ public class MainController implements Initializable {
                 .graphic(f1Gauge)
                 .build();
 
+
         FlowGridPane scores = new FlowGridPane(4, 1, accuracyTile, precisionTile, recallTile, f1Tile);
         FlowGridPane ampls = new FlowGridPane(2, 1, trainingTile, ramUsesTile);
 
         trainPaneSection3.getChildren().add(ampls);
         flowScores.getChildren().add(scores);
-
-
-
-
-
 
 
 
@@ -214,7 +211,7 @@ public class MainController implements Initializable {
         trainPaneSection2.setTranslateY(trainPaneSection2.getPrefHeight() + 32);
         classifierPaneSection2.setTranslateY(classifierPaneSection2.getPrefHeight() + 32);
 
-
+        Utils.monitoreRAM(bean, ramUsesTile);
 
         close.setOnAction(e -> {
             Platform.exit();

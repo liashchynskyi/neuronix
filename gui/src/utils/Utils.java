@@ -1,9 +1,19 @@
 package utils;
 
 import com.jfoenix.controls.JFXTextArea;
+import com.profesorfalken.jsensors.JSensors;
+import com.profesorfalken.jsensors.model.components.Components;
+import com.profesorfalken.jsensors.model.components.Cpu;
+import com.profesorfalken.jsensors.model.components.Disk;
+import com.profesorfalken.jsensors.model.components.Gpu;
+import com.profesorfalken.jsensors.model.sensors.Temperature;
+import com.sun.management.OperatingSystemMXBean;
 import eu.hansolo.medusa.Gauge;
 import eu.hansolo.medusa.GaugeBuilder;
 import eu.hansolo.tilesfx.Tile;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -16,6 +26,7 @@ import javafx.util.Duration;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.List;
 import java.util.Stack;
 
 public class Utils {
@@ -100,5 +111,26 @@ public class Utils {
                 .maxValue(max)
                 .build();
     }
+
+    public static void monitoreRAM(OperatingSystemMXBean bean, Tile tile) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Timeline timeline = new Timeline(new KeyFrame(
+                        Duration.millis(2500),
+                        ae -> {
+
+                            long totalMem = bean.getTotalPhysicalMemorySize();
+                            long freeMem = bean.getFreePhysicalMemorySize();
+                            double usageMem = (totalMem - freeMem) / 1048576.00; // in GB
+
+                            tile.setValue(usageMem / 1024.00);
+                        }));
+                timeline.setCycleCount(Animation.INDEFINITE);
+                timeline.play();
+            }
+        }).run();
+    }
+
 
 }
