@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
@@ -87,7 +89,7 @@
                   <Insets left="30.0" />
                </padding>
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="CROSSHAIRS" size="15" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="CROSSHAIRS" size="19" />
                </graphic>
             </JFXButton>
          </children>
@@ -115,14 +117,6 @@
       <AnchorPane fx:id="classifierPaneSection3" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;">
          <children>
             <Label text="Section 3 Classifier" textFill="WHITE">
-               <font>
-                  <Font size="72.0" />
-               </font>
-            </Label>
-         </children></AnchorPane>
-      <AnchorPane fx:id="configPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
-         <children>
-            <Label text="Sec2CO" textFill="WHITE">
                <font>
                   <Font size="72.0" />
                </font>
@@ -183,5 +177,47 @@
             </Label>
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="configPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
+         <children>
+            <JFXButton fx:id="config1" alignment="BASELINE_LEFT" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="120.0" prefHeight="41.0" prefWidth="228.0" text="Завантажити навчені моделі" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="ZIP_BOX" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="config11" alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="20.0" layoutY="69.0" prefHeight="41.0" prefWidth="235.0" text="Поточна конфігурація" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="EYE" size="20" />
+               </graphic>
+            </JFXButton>
+            <Label layoutX="37.0" layoutY="436.0" prefHeight="19.0" prefWidth="97.0" text="Підтримка GPU:" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <JFXToggleButton layoutX="144.0" layoutY="418.0" text="Викл." textFill="WHITE" />
+            <JFXCheckBox checkedColor="#bba6a6" contentDisplay="CENTER" layoutX="30.0" layoutY="286.0" text="Зберігати модель після навчання" textFill="WHITE" unCheckedColor="#867777" />
+            <Label layoutX="37.0" layoutY="478.0" prefHeight="19.0" prefWidth="97.0" text="Workspace:" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <JFXToggleButton layoutX="144.0" layoutY="460.0" text="SEP" textFill="WHITE" />
+            <JFXCheckBox checkedColor="#bba6a6" contentDisplay="CENTER" layoutX="30.0" layoutY="325.0" text="Показувати консоль" textFill="WHITE" unCheckedColor="#867777" />
+            <JFXButton fx:id="config12" alignment="BASELINE_LEFT" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="174.0" prefHeight="41.0" prefWidth="228.0" text="Завантажити створені моделі" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="SD" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXCheckBox checkedColor="#bba6a6" contentDisplay="CENTER" layoutX="30.0" layoutY="364.0" text="Зберігати логи" textFill="WHITE" unCheckedColor="#867777" />
+         </children></AnchorPane>
    </children>
 </AnchorPane>
