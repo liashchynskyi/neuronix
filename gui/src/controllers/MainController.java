@@ -279,7 +279,7 @@ public class MainController implements Initializable {
         config.setOnAction(e -> {
             Utils.switchPane(   configPaneSection2, configPaneSection3,
                                 stackS2, stackS3,
-                                CONFIG, "Ntcn",
+                                CONFIG, "Опис налаштувань",
                                 descriptionOfSecondSection, descriptionOfThirdSection, openNav3, openNav2   );
         });
 

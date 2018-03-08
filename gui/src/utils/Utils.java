@@ -46,11 +46,26 @@ public class Utils {
         Utils.log.set(log);
     }
 
-    public static void switchPane(AnchorPane pane, Stack stack, String name, Label description) {
-        pane.toFront();
-        stack.pop();
-        stack.push(pane);
+    public static void switch3Pane(AnchorPane pane3, Stack stack, String name, Label description, TranslateTransition open3) {
+        open3 = new TranslateTransition(new Duration(350), pane3);
+        open3.setToX(0);
+
+        pane3.toFront();
+
+
+        AnchorPane pane33 = (AnchorPane)  stack.pop();
+        TranslateTransition hide3 = new TranslateTransition(new Duration(100), pane33);
+        hide3.setToX(pane33.getPrefWidth());
+
+        stack.push(pane3);
         description.setText(name);
+
+        if (pane3.getTranslateX()!= 0){
+            open3.play();
+            hide3.play();
+        }
+
+
     }
     public static void switchPane(AnchorPane pane2, AnchorPane pane3,
                                   Stack stack2, Stack stack3,
@@ -69,8 +84,8 @@ public class Utils {
         AnchorPane pane33 = (AnchorPane)  stack3.pop();
         AnchorPane pane22 = (AnchorPane)  stack2.pop();
 
-        TranslateTransition hide3 = new TranslateTransition(new Duration(550), pane33);
-        TranslateTransition hide2 = new TranslateTransition(new Duration(550), pane22);
+        TranslateTransition hide3 = new TranslateTransition(new Duration(100), pane33);
+        TranslateTransition hide2 = new TranslateTransition(new Duration(100), pane22);
 
         hide3.setToX(pane33.getPrefWidth());
         hide2.setToY((pane22.getPrefHeight() + 32));

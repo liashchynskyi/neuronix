@@ -27,8 +27,10 @@ public class AppLoader extends Application {
         });
 
         Scene scene = new Scene(root, 1000, 600);
-        stage.setScene(scene);
+        scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(scene);
+
         stage.show();
     }
 }
