@@ -1,10 +1,7 @@
 package controllers;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXCheckBox;
-import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.*;
 
-import com.jfoenix.controls.JFXToggleButton;
 import eu.hansolo.medusa.Gauge;
 import eu.hansolo.medusa.GaugeBuilder;
 import eu.hansolo.tilesfx.Tile;
@@ -60,7 +57,9 @@ public class MainController implements Initializable {
                         classifier,
                         displayConfig,
                         loadPreTrained,
-                        loadCreated;
+                        loadCreated,
+                        loadImages,
+                        runForestRun;
 
     //Checkboxes
     @FXML
@@ -82,6 +81,20 @@ public class MainController implements Initializable {
                     projectDescription,
                     appNameL;
 
+
+    //ComboBoxes
+    @FXML
+    private JFXComboBox chooseModel;
+
+    //Text Fields
+    @FXML
+    private JFXTextField    epochsNumber,
+                            iterNumber,
+                            learningRateNumber;
+
+    //Slider
+    @FXML
+    private JFXSlider   splitTrainTest;
 
     //Hyperlinks
     @FXML
@@ -114,6 +127,10 @@ public class MainController implements Initializable {
     private final String CONFIG         = "Налаштування";
     private final String TRAINING       = "Навчання";
     private final String CLASSIFICATION = "Класифікація";
+    private final String TRAINING_PR    = "Процес навчання";
+    private final String RAM_USES       = "Використання ОЗУ";
+    private final String CONFIG_DESC    = "Опис налаштувань";
+    private final String CURRENT_CONF   = "Поточні налаштування";
 
     //Logger
     protected final Logger log = LoggerFactory.getLogger(MainController.class);
@@ -139,12 +156,83 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        initializeGauges();
+
+        chooseModel.getItems().addAll("LeNet_224", "LeNet_128");
+        //chooseModel.setValue("LeNet ASH67");
+
+        defaultPaneSection2.toFront();
+        defaultPaneSection3.toFront();
+
+        stackS2.push(defaultPaneSection2);
+        stackS3.push(defaultPaneSection3);
+
+        configPaneSection3.setTranslateX(configPaneSection3.getPrefWidth());
+        displayConfigPaneSection3.setTranslateX(displayConfigPaneSection3.getPrefWidth());
+        trainPaneSection3.setTranslateX(trainPaneSection3.getPrefWidth());
+        classifierPaneSection3.setTranslateX(classifierPaneSection3.getPrefWidth());
+
+        configPaneSection2.setTranslateY(configPaneSection2.getPrefHeight() + 32);
+        trainPaneSection2.setTranslateY(trainPaneSection2.getPrefHeight() + 32);
+        classifierPaneSection2.setTranslateY(classifierPaneSection2.getPrefHeight() + 32);
+
+        Utils.monitoreRAM(bean, ramUsesTile);
+
+        close.setOnAction(e -> {
+            Platform.exit();
+        });
+
+        minimize.setOnAction(e -> {
+
+
+            Stage stage = (Stage)((JFXButton)e.getSource()).getScene().getWindow();
+            stage.setIconified(true);
+
+//            Timeline timeline = new Timeline(new KeyFrame(
+//                    Duration.millis(1500),
+//                    ae -> {
+//                       slimGauge.setValue(slimGauge.getValue() + 7.5);
+//                    }));
+//            timeline.setCycleCount(Animation.INDEFINITE);
+//            timeline.play();
+
+        });
+
+        config.setOnAction(e -> {
+            Utils.switchPane(   configPaneSection2, configPaneSection3,
+                                stackS2, stackS3,
+                                CONFIG, CONFIG_DESC,
+                                descriptionOfSecondSection, descriptionOfThirdSection, openNav3, openNav2   );
+        });
+
+        displayConfig.setOnAction(e -> {
+            Utils.switch3Pane(displayConfigPaneSection3, stackS3, CURRENT_CONF,
+                    descriptionOfThirdSection, openNav3);
+        });
+
+        train.setOnAction(e -> {
+            Utils.switchPane(   trainPaneSection2, trainPaneSection3,
+                                stackS2, stackS3,
+                                TRAINING, "sdf",
+                                descriptionOfSecondSection, descriptionOfThirdSection, openNav3, openNav2   );
+        });
+
+        classifier.setOnAction(e -> {
+            Utils.switchPane(   classifierPaneSection2, classifierPaneSection3,
+                                stackS2, stackS3,
+                                CLASSIFICATION, "Ntcn",
+                                descriptionOfSecondSection, descriptionOfThirdSection, openNav3, openNav2    );
+        });
+
+    }
+
+    public void initializeGauges() {
         trainingGauge = createGauge(Gauge.SkinType.SLIM, 255, 100.00, "%");
         trainingTile  = TileBuilder.create()
                 .prefSize(255, 255)
                 .backgroundColor(Color.web("#755c62"))
                 .skinType(Tile.SkinType.CUSTOM)
-                .title("Процес навчання")
+                .title(TRAINING_PR)
                 .titleAlignment(TextAlignment.CENTER)
                 .startFromZero(true)
                 .graphic(trainingGauge)
@@ -154,7 +242,7 @@ public class MainController implements Initializable {
                 .prefSize(255, 255)
                 .skinType(Tile.SkinType.HIGH_LOW)
                 .backgroundColor(Color.web("#755c62"))
-                .title("Використання ОЗУ")
+                .title(RAM_USES)
                 .titleAlignment(TextAlignment.CENTER)
                 .unit("GB")
                 .minValue(0)
@@ -215,113 +303,6 @@ public class MainController implements Initializable {
 
         trainPaneSection3.getChildren().add(ampls);
         flowScores.getChildren().add(scores);
-
-        defaultPaneSection2.toFront();
-        defaultPaneSection3.toFront();
-
-        stackS2.push(defaultPaneSection2);
-        stackS3.push(defaultPaneSection3);
-
-        configPaneSection3.setTranslateX(configPaneSection3.getPrefWidth());
-        displayConfigPaneSection3.setTranslateX(displayConfigPaneSection3.getPrefWidth());
-        trainPaneSection3.setTranslateX(trainPaneSection3.getPrefWidth());
-        classifierPaneSection3.setTranslateX(classifierPaneSection3.getPrefWidth());
-
-        configPaneSection2.setTranslateY(configPaneSection2.getPrefHeight() + 32);
-        trainPaneSection2.setTranslateY(trainPaneSection2.getPrefHeight() + 32);
-        classifierPaneSection2.setTranslateY(classifierPaneSection2.getPrefHeight() + 32);
-
-        Utils.monitoreRAM(bean, ramUsesTile);
-
-        close.setOnAction(e -> {
-            Platform.exit();
-        });
-
-        minimize.setOnAction(e -> {
-
-
-            Stage stage = (Stage)((JFXButton)e.getSource()).getScene().getWindow();
-            stage.setIconified(true);
-
-//            Timeline timeline = new Timeline(new KeyFrame(
-//                    Duration.millis(1500),
-//                    ae -> {
-//                       slimGauge.setValue(slimGauge.getValue() + 7.5);
-//                    }));
-//            timeline.setCycleCount(Animation.INDEFINITE);
-//            timeline.play();
-
-
-
-//            new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    Timeline timeline = new Timeline(new KeyFrame(
-//                            Duration.millis(1000),
-//                            ae -> {
-//                                if (slimGauge.getValue() >= 100)
-//                                {
-//                                    accuracyGauge.setValue(97.7);
-//                                    precisionGauge.setValue(99.9);
-//                                    recallGauge.setValue(95.6);
-//                                    f1Gauge.setValue(96.01);
-//                                    slimGauge.stop();
-//
-//                                }
-//                                else
-//                                    slimGauge.setValue(slimGauge.getValue() + 1.15);
-//
-//
-//                            }));
-//                    timeline.setCycleCount(Animation.INDEFINITE);
-//                    timeline.play();
-//                }
-//            }).run();
-//            new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    Timeline timeline = new Timeline(new KeyFrame(
-//                            Duration.millis(2500),
-//                            ae -> {
-//
-//                                long totalMem = bean.getTotalPhysicalMemorySize();
-//                                long freeMem = bean.getFreePhysicalMemorySize();
-//                                double usageMem = (totalMem - freeMem) / 1048576.00; // in GB
-//
-//                                ramUsesTile.setValue(usageMem / 1024.00);
-//                            }));
-//                    timeline.setCycleCount(Animation.INDEFINITE);
-//                    timeline.play();
-//                }
-//            }).run();
-        });
-
-        config.setOnAction(e -> {
-            Utils.switchPane(   configPaneSection2, configPaneSection3,
-                                stackS2, stackS3,
-                                CONFIG, "Опис налаштувань",
-                                descriptionOfSecondSection, descriptionOfThirdSection, openNav3, openNav2   );
-        });
-
-        displayConfig.setOnAction(e -> {
-            Utils.switch3Pane(displayConfigPaneSection3, stackS3, "Поточні налаштування",
-                    descriptionOfThirdSection, openNav3);
-        });
-
-        train.setOnAction(e -> {
-            Utils.switchPane(   trainPaneSection2, trainPaneSection3,
-                                stackS2, stackS3,
-                                TRAINING, "sdf",
-                                descriptionOfSecondSection, descriptionOfThirdSection, openNav3, openNav2   );
-        });
-
-        classifier.setOnAction(e -> {
-            Utils.switchPane(   classifierPaneSection2, classifierPaneSection3,
-                                stackS2, stackS3,
-                                CLASSIFICATION, "Ntcn",
-                                descriptionOfSecondSection, descriptionOfThirdSection, openNav3, openNav2    );
-        });
-
     }
 
 }

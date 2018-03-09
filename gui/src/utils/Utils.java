@@ -105,6 +105,7 @@ public class Utils {
     public static void setLogger(JFXTextArea console) {
         os = new TextAreaOutputStream(console);
         StreamAppender.setStaticOutputStream(os);
+
     }
 
     public static Gauge createGauge(final Gauge.SkinType TYPE, int size, double max, String unit) {
