@@ -1,8 +1,10 @@
 package controllers;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextArea;
 
+import com.jfoenix.controls.JFXToggleButton;
 import eu.hansolo.medusa.Gauge;
 import eu.hansolo.medusa.GaugeBuilder;
 import eu.hansolo.tilesfx.Tile;
@@ -55,7 +57,22 @@ public class MainController implements Initializable {
                         minimize,
                         config,
                         train,
-                        classifier;
+                        classifier,
+                        displayConfig,
+                        loadPreTrained,
+                        loadCreated;
+
+    //Checkboxes
+    @FXML
+    private JFXCheckBox saveModelAfterTraining,
+                        displayConsole,
+                        saveLogs;
+
+    //Toggle Buttons
+    @FXML
+    private JFXToggleButton gpuMode,
+                            workspaceMode;
+
 
     //Labels
     @FXML
@@ -84,7 +101,8 @@ public class MainController implements Initializable {
                         trainPaneSection2,
                         trainPaneSection3,
                         classifierPaneSection2,
-                        classifierPaneSection3;
+                        classifierPaneSection3,
+                        displayConfigPaneSection3;
     @FXML
     private Pane flowScores;
 
@@ -198,12 +216,14 @@ public class MainController implements Initializable {
         trainPaneSection3.getChildren().add(ampls);
         flowScores.getChildren().add(scores);
 
-
+        defaultPaneSection2.toFront();
+        defaultPaneSection3.toFront();
 
         stackS2.push(defaultPaneSection2);
         stackS3.push(defaultPaneSection3);
 
         configPaneSection3.setTranslateX(configPaneSection3.getPrefWidth());
+        displayConfigPaneSection3.setTranslateX(displayConfigPaneSection3.getPrefWidth());
         trainPaneSection3.setTranslateX(trainPaneSection3.getPrefWidth());
         classifierPaneSection3.setTranslateX(classifierPaneSection3.getPrefWidth());
 
@@ -281,6 +301,11 @@ public class MainController implements Initializable {
                                 stackS2, stackS3,
                                 CONFIG, "Опис налаштувань",
                                 descriptionOfSecondSection, descriptionOfThirdSection, openNav3, openNav2   );
+        });
+
+        displayConfig.setOnAction(e -> {
+            Utils.switch3Pane(displayConfigPaneSection3, stackS3, "Поточні налаштування",
+                    descriptionOfThirdSection, openNav3);
         });
 
         train.setOnAction(e -> {
