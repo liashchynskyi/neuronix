@@ -44,7 +44,9 @@ import org.nd4j.linalg.lossfunctions.LossFunctions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 
@@ -61,6 +63,7 @@ public class CG {
     protected static int epochs = 20; //20 cyt 100%
 
     public static void main(String[] args) throws IOException {
+
         File parentDir = new File("T:/DISK_D/PETRO/Development/development/java/projects/cytology/untitled/src/main/hist");
 
         FileSplit filesInDir = new FileSplit(parentDir, NativeImageLoader.ALLOWED_FORMATS, rng);
@@ -136,6 +139,7 @@ public class CG {
     private static DenseLayer fullyConnected(String name, int out, double bias, double dropOut, Distribution dist) {
         return new DenseLayer.Builder().name(name).nOut(out).biasInit(bias).dropOut(dropOut).dist(dist).build();
     }
+
     private static MultiLayerConfiguration leNet() {
         MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
                 .seed(seed)
