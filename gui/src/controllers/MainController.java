@@ -2,6 +2,7 @@ package controllers;
 
 import com.jfoenix.controls.*;
 
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import eu.hansolo.medusa.Gauge;
 import eu.hansolo.medusa.GaugeBuilder;
 import eu.hansolo.tilesfx.Tile;
@@ -28,17 +29,23 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.paint.Stop;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.RxLogger;
 import utils.Utils;
 
+import java.io.File;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryUsage;
 import com.sun.management.OperatingSystemMXBean;
+import utils.prefs.Prefs;
+
 import java.net.URL;
 
 import java.util.ResourceBundle;
@@ -119,6 +126,19 @@ public class MainController implements Initializable {
     @FXML
     private Pane flowScores;
 
+    //Text Display Conf
+    @FXML
+    private Text    displayLoadDir,
+                    displaySaveDir;
+
+    //Icons
+    @FXML
+    private MaterialDesignIconView  gpuModeIcon,
+                                    workspaceModeIcon,
+                                    logIcon,
+                                    consoleIcon,
+                                    trainIcon;
+
     //Console Text Area
     @FXML
     private JFXTextArea console;
@@ -155,6 +175,12 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        Prefs prefs = new Prefs(saveModelAfterTraining, displayConsole, saveLogs,
+                gpuMode, workspaceMode);
+        prefs.toUpdate(displayLoadDir, displaySaveDir, gpuModeIcon,
+                workspaceModeIcon, trainIcon, consoleIcon, logIcon);
+        prefs.init();
 
         initializeGauges();
 
@@ -223,6 +249,62 @@ public class MainController implements Initializable {
                                 CLASSIFICATION, "Ntcn",
                                 descriptionOfSecondSection, descriptionOfThirdSection, openNav3, openNav2    );
         });
+
+        loadPreTrained.setOnAction(e -> {
+            DirectoryChooser directoryChooser = new DirectoryChooser();
+            File selectedDirectory = directoryChooser.showDialog(new Stage());
+            prefs.setCurrentLoadDir(selectedDirectory.getAbsolutePath());
+        });
+        loadCreated.setOnAction(e -> {
+            DirectoryChooser directoryChooser = new DirectoryChooser();
+            File selectedDirectory = directoryChooser.showDialog(new Stage());
+            prefs.setCurrentSaveDir(selectedDirectory.getAbsolutePath());
+        });
+        saveModelAfterTraining.setOnAction(e -> {
+            if (saveModelAfterTraining.isSelected()) {
+                prefs.setCurrentSaveState(true);
+            }
+            else {
+                prefs.setCurrentSaveState(false);
+            }
+        });
+        displayConsole.setOnAction(e -> {
+            if (displayConsole.isSelected()) {
+                prefs.setCurrentConsoleState(true);
+            }
+            else {
+                prefs.setCurrentConsoleState(false);
+            }
+        });
+        saveLogs.setOnAction(e -> {
+            if (saveLogs.isSelected()) {
+                prefs.setCurrentLogState(true);
+            }
+            else {
+                prefs.setCurrentLogState(false);
+            }
+        });
+        gpuMode.setOnAction(e -> {
+            if (gpuMode.isSelected()) {
+                prefs.setCurrentGpuState(true);
+                gpuMode.setText("Вкл.");
+            }
+            else {
+                prefs.setCurrentGpuState(false);
+                gpuMode.setText("Викл.");
+            }
+        });
+        workspaceMode.setOnAction(e -> {
+            if (workspaceMode.isSelected()) {
+                prefs.setCurrentWorkspaceState(true);
+                workspaceMode.setText("SIN");
+            }
+            else {
+                prefs.setCurrentWorkspaceState(false);
+                workspaceMode.setText("SEP");
+            }
+        });
+
 
     }
 

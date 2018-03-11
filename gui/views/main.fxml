@@ -152,48 +152,6 @@
          <children>
             <Pane fx:id="flowScores" layoutY="438.0" prefHeight="127.0" prefWidth="510.0" />
          </children></AnchorPane>
-      <AnchorPane fx:id="configPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
-         <children>
-            <JFXButton fx:id="loadPreTrained" alignment="BASELINE_LEFT" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="120.0" prefHeight="41.0" prefWidth="228.0" text="Завантажити навчені моделі" textFill="WHITE">
-               <font>
-                  <Font size="13.0" />
-               </font>
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="ZIP_BOX" size="20" />
-               </graphic>
-            </JFXButton>
-            <JFXButton fx:id="displayConfig" alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="20.0" layoutY="69.0" prefHeight="41.0" prefWidth="235.0" text="Поточна конфігурація" textFill="WHITE">
-               <font>
-                  <Font size="13.0" />
-               </font>
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="EYE" size="20" />
-               </graphic>
-            </JFXButton>
-            <Label layoutX="30.0" layoutY="438.0" prefHeight="19.0" prefWidth="97.0" text="Підтримка GPU:" textFill="WHITE">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <JFXToggleButton fx:id="gpuMode" layoutX="144.0" layoutY="418.0" text="Викл." textFill="WHITE" />
-            <JFXCheckBox fx:id="saveModelAfterTraining" checkedColor="#bba6a6" contentDisplay="CENTER" layoutX="30.0" layoutY="286.0" text="Зберігати модель після навчання" textFill="WHITE" unCheckedColor="#867777" />
-            <Label layoutX="30.0" layoutY="480.0" prefHeight="19.0" prefWidth="97.0" text="Workspace:" textFill="WHITE">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <JFXToggleButton fx:id="workspaceMode" layoutX="144.0" layoutY="460.0" text="SEP" textFill="WHITE" />
-            <JFXCheckBox fx:id="displayConsole" checkedColor="#bba6a6" contentDisplay="CENTER" layoutX="30.0" layoutY="325.0" text="Показувати консоль" textFill="WHITE" unCheckedColor="#867777" />
-            <JFXButton fx:id="loadCreated" alignment="BASELINE_LEFT" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="174.0" prefHeight="41.0" prefWidth="228.0" text="Завантажити створені моделі" textFill="WHITE">
-               <font>
-                  <Font size="13.0" />
-               </font>
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="SD" size="20" />
-               </graphic>
-            </JFXButton>
-            <JFXCheckBox fx:id="saveLogs" checkedColor="#bba6a6" contentDisplay="CENTER" layoutX="30.0" layoutY="364.0" text="Зберігати логи" textFill="WHITE" unCheckedColor="#867777" />
-         </children></AnchorPane>
       <AnchorPane fx:id="trainPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
          <children>
             <JFXButton fx:id="loadImages" alignment="BASELINE_LEFT" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="143.0" prefHeight="41.0" prefWidth="228.0" text="Директорія із зображеннями" textFill="WHITE">
@@ -243,52 +201,6 @@
                </graphic>
             </JFXButton>
          </children></AnchorPane>
-      <AnchorPane fx:id="displayConfigPaneSection3" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;">
-         <children>
-            <MaterialDesignIconView fill="WHITE" glyphName="ZIP_BOX" layoutX="100.0" layoutY="106.0" size="24" />
-            <Text fill="WHITE" layoutX="136.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T:\DISK_D\PETRO\Development\development\java\projects\neuronix\gui\views" wrappingWidth="297.12109375">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Text>
-            <MaterialDesignIconView fill="WHITE" glyphName="SD" layoutX="100.0" layoutY="166.0" size="24" />
-            <Text fill="WHITE" layoutX="136.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T:\DISK_D\PETRO\Development\development\java\projects\neuronix\gui\src\utils" wrappingWidth="297.12109375">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Text>
-            <MaterialDesignIconView fill="WHITE" glyphName="TOGGLE_SWITCH" layoutX="100.0" layoutY="226.0" size="24" />
-            <Text fill="WHITE" layoutX="136.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Підтримка GPU для пришвидшення обчислень" wrappingWidth="268.0000046174973">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Text>
-            <MaterialDesignIconView fill="WHITE" glyphName="TOGGLE_SWITCH_OFF" layoutX="100.0" layoutY="286.0" size="24" />
-            <Text fill="WHITE" layoutX="136.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Workspace режим" wrappingWidth="297.12109375">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Text>
-            <MaterialDesignIconView fill="WHITE" glyphName="CHECKBOX_MARKED_OUTLINE" layoutX="100.0" layoutY="346.0" size="24" />
-            <Text fill="WHITE" layoutX="136.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Зберігання моделі після навчання" wrappingWidth="194.000001847744">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Text>
-            <MaterialDesignIconView fill="WHITE" glyphName="CHECKBOX_BLANK_OUTLINE" layoutX="100.0" layoutY="406.0" size="24" />
-            <Text fill="WHITE" layoutX="136.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Відображення консолі під час навчання" wrappingWidth="223.0000066012144">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Text>
-            <MaterialDesignIconView fill="WHITE" glyphName="CHECKBOX_MARKED_OUTLINE" layoutX="100.0" layoutY="466.0" size="24" />
-            <Text fill="WHITE" layoutX="136.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Зберігання логів у файл" wrappingWidth="136.99999999254942">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
       <AnchorPane fx:id="configPaneSection3" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;">
          <children>
             <MaterialDesignIconView fill="WHITE" glyphName="ZIP_BOX" layoutX="100.0" layoutY="140.0" size="24" />
@@ -335,6 +247,94 @@
             </Text>
             <MaterialDesignIconView fill="WHITE" glyphName="CHECKBOX_MARKED_OUTLINE" layoutX="100.0" layoutY="500.0" size="24" />
             <Text fill="WHITE" layoutX="136.0" layoutY="486.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Зберігайте логи у файл" wrappingWidth="136.99999999254942">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="configPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
+         <children>
+            <JFXButton fx:id="loadPreTrained" alignment="BASELINE_LEFT" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="120.0" prefHeight="41.0" prefWidth="228.0" text="Завантажити навчені моделі" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="ZIP_BOX" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="displayConfig" alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="20.0" layoutY="69.0" prefHeight="41.0" prefWidth="235.0" text="Поточна конфігурація" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="EYE" size="20" />
+               </graphic>
+            </JFXButton>
+            <Label layoutX="30.0" layoutY="438.0" prefHeight="19.0" prefWidth="97.0" text="Підтримка GPU:" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <JFXToggleButton fx:id="gpuMode" layoutX="144.0" layoutY="418.0" text="Викл." textFill="WHITE" />
+            <JFXCheckBox fx:id="saveModelAfterTraining" checkedColor="#bba6a6" contentDisplay="CENTER" layoutX="30.0" layoutY="286.0" text="Зберігати модель після навчання" textFill="WHITE" unCheckedColor="#867777" />
+            <Label layoutX="30.0" layoutY="480.0" prefHeight="19.0" prefWidth="97.0" text="Workspace:" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <JFXToggleButton fx:id="workspaceMode" layoutX="144.0" layoutY="460.0" text="SEP" textFill="WHITE" />
+            <JFXCheckBox fx:id="displayConsole" checkedColor="#bba6a6" contentDisplay="CENTER" layoutX="30.0" layoutY="325.0" text="Показувати консоль" textFill="WHITE" unCheckedColor="#867777" />
+            <JFXButton fx:id="loadCreated" alignment="BASELINE_LEFT" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="174.0" prefHeight="41.0" prefWidth="228.0" text="Завантажити створені моделі" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="SD" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXCheckBox fx:id="saveLogs" checkedColor="#bba6a6" contentDisplay="CENTER" layoutX="30.0" layoutY="364.0" text="Зберігати логи" textFill="WHITE" unCheckedColor="#867777" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="displayConfigPaneSection3" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;">
+         <children>
+            <MaterialDesignIconView fill="WHITE" glyphName="ZIP_BOX" layoutX="100.0" layoutY="106.0" size="24" />
+            <Text fx:id="displayLoadDir" fill="WHITE" layoutX="136.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T:\DISK_D\PETRO\Development\development\java\projects\neuronix\gui\views" wrappingWidth="297.12109375">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <MaterialDesignIconView fill="WHITE" glyphName="SD" layoutX="100.0" layoutY="166.0" size="24" />
+            <Text fx:id="displaySaveDir" fill="WHITE" layoutX="136.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T:\DISK_D\PETRO\Development\development\java\projects\neuronix\gui\src\utils" wrappingWidth="297.12109375">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <MaterialDesignIconView fx:id="gpuModeIcon" fill="WHITE" glyphName="TOGGLE_SWITCH" layoutX="100.0" layoutY="226.0" size="24" />
+            <Text fill="WHITE" layoutX="136.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Підтримка GPU для пришвидшення обчислень" wrappingWidth="268.0000046174973">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <MaterialDesignIconView fx:id="workspaceModeIcon" fill="WHITE" glyphName="TOGGLE_SWITCH_OFF" layoutX="100.0" layoutY="286.0" size="24" />
+            <Text fill="WHITE" layoutX="136.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Workspace режим" wrappingWidth="297.12109375">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <MaterialDesignIconView fx:id="trainIcon" fill="WHITE" glyphName="CHECKBOX_MARKED_OUTLINE" layoutX="100.0" layoutY="346.0" size="24" />
+            <Text fill="WHITE" layoutX="136.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Зберігання моделі після навчання" wrappingWidth="194.000001847744">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <MaterialDesignIconView fx:id="consoleIcon" fill="WHITE" glyphName="CHECKBOX_BLANK_OUTLINE" layoutX="100.0" layoutY="406.0" size="24" />
+            <Text fill="WHITE" layoutX="136.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Відображення консолі під час навчання" wrappingWidth="223.0000066012144">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <MaterialDesignIconView fx:id="logIcon" fill="WHITE" glyphName="CHECKBOX_MARKED_OUTLINE" layoutX="100.0" layoutY="466.0" size="24" />
+            <Text fill="WHITE" layoutX="136.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Зберігання логів у файл" wrappingWidth="136.99999999254942">
                <font>
                   <Font size="13.0" />
                </font>
