@@ -1,5 +1,6 @@
 package utils;
 
+import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTextArea;
 import com.sun.management.OperatingSystemMXBean;
 import eu.hansolo.medusa.Gauge;
@@ -11,9 +12,11 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -135,6 +138,26 @@ public class Utils {
                 timeline.play();
             }
         }).run();
+    }
+    
+    public static void updateProgress (Gauge gauge, int epoch, int numEpochs) {
+        Platform.runLater(() -> {
+            double value = 0.0;
+            value = (double) epoch / (double) numEpochs * 100;
+            gauge.setValue(value);
+        });
+    }
+    
+    public static void updateProgress (JFXProgressBar bar, int image, int numImages) {
+        Platform.runLater(() -> {
+            double value = 0.0;
+            value = (double) image / (double) numImages * 100;
+            bar.setProgress(value);
+        });
+    }
+    
+    public static void updateProgress (JFXProgressBar bar) {
+        bar.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
     }
     
     

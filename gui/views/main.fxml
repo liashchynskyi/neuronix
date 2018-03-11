@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXProgressBar?>
 <?import com.jfoenix.controls.JFXSlider?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXToggleButton?>
@@ -97,15 +98,6 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="classifierPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
-         <children>
-            <Label text="Sec2C" textFill="WHITE">
-               <font>
-                  <Font size="72.0" />
-               </font>
-            </Label>
-         </children></AnchorPane>
-      <AnchorPane fx:id="classifierPaneSection3" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;" />
       <AnchorPane fx:id="defaultPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
          <children>
             <Label fx:id="projectDescription" alignment="CENTER" layoutX="10.0" layoutY="161.0" prefHeight="20.0" prefWidth="251.0" text="Проект з відкритим вихідним кодом" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0">
@@ -341,5 +333,48 @@
             </Text>
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="classifierPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
+         <children>
+            <Label layoutX="30.0" layoutY="118.0" text="Оберіть модель для класифікації:" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <JFXComboBox fx:id="chooseModel1" focusColor="#dcdde1" layoutX="30.0" layoutY="153.0" prefHeight="25.0" prefWidth="208.0" promptText="Модель" unFocusColor="#7c5d5d" />
+            <JFXButton fx:id="loadImages1" alignment="BASELINE_LEFT" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="221.0" prefHeight="41.0" prefWidth="228.0" text="Директорія із зображеннями" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="FOLDER_IMAGE" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="loadImages11" alignment="BASELINE_LEFT" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="283.0" prefHeight="41.0" prefWidth="228.0" text="Файл зображення" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="IMAGE" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="runForestRun1" alignment="CENTER" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="375.0" prefHeight="41.0" prefWidth="228.0" text="СТАРТ" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="PLAY_BOX_OUTLINE" size="20" />
+               </graphic>
+            </JFXButton>
+         </children></AnchorPane>
+      <AnchorPane fx:id="classifierPaneSection3" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;">
+         <children>
+            <MaterialDesignIconView fill="WHITE" glyphName="WEATHER_SUNNY" layoutX="239.0" layoutY="192.0" size="32.0" />
+            <Text fill="WHITE" layoutX="92.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Для класифікації зображень потрібно обрати навчену модель мережі, а також вказати дтректорію із зображеннями (для класифікації декількох зображень) або обрати один файл." textAlignment="CENTER" wrappingWidth="326.12109699845314">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <JFXProgressBar layoutX="155.0" layoutY="370.0" progress="0.35" />
+         </children></AnchorPane>
    </children>
 </AnchorPane>

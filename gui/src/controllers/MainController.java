@@ -120,7 +120,6 @@ public class MainController implements Initializable {
     
     @Override
     public void initialize (URL location, ResourceBundle resources) {
-        
         Prefs prefs = new Prefs(saveModelAfterTraining, displayConsole, saveLogs, gpuMode,
                                 workspaceMode);
         prefs.toUpdate(displayLoadDir, displaySaveDir, gpuModeIcon, workspaceModeIcon, trainIcon,
@@ -155,20 +154,9 @@ public class MainController implements Initializable {
         });
         
         minimize.setOnAction(e -> {
-            
-            
             Stage stage = (Stage) ((JFXButton) e.getSource()).getScene()
                                                              .getWindow();
             stage.setIconified(true);
-            
-            //            Timeline timeline = new Timeline(new KeyFrame(
-            //                    Duration.millis(1500),
-            //                    ae -> {
-            //                       slimGauge.setValue(slimGauge.getValue() + 7.5);
-            //                    }));
-            //            timeline.setCycleCount(Animation.INDEFINITE);
-            //            timeline.play();
-            
         });
         
         config.setOnAction(e -> {
@@ -184,13 +172,13 @@ public class MainController implements Initializable {
         
         train.setOnAction(e -> {
             Utils.switchPane(trainPaneSection2, trainPaneSection3, stackS2, stackS3, TRAINING,
-                             "sdf", descriptionOfSecondSection, descriptionOfThirdSection, openNav3,
-                             openNav2);
+                             TRAINING_PR, descriptionOfSecondSection, descriptionOfThirdSection,
+                             openNav3, openNav2);
         });
         
         classifier.setOnAction(e -> {
             Utils.switchPane(classifierPaneSection2, classifierPaneSection3, stackS2, stackS3,
-                             CLASSIFICATION, "Ntcn", descriptionOfSecondSection,
+                             CLASSIFICATION, "Результати класифікації", descriptionOfSecondSection,
                              descriptionOfThirdSection, openNav3, openNav2);
         });
         
