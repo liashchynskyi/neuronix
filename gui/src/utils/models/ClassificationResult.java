@@ -8,37 +8,29 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 
 
-public class ClassificationResult extends RecursiveTreeObject<ClassificationResult> {
+public class ClassificationResult {
     
-    private ListProperty<String> results   = new SimpleListProperty();
-    private StringProperty       className = new SimpleStringProperty();
+    private StringProperty imageName;
+    private StringProperty email;
     
-    public ClassificationResult (ObservableList<String> results, String className) {
-        this.setResults(results);
-        this.setClassName(className);
+    public ClassificationResult (String imageName, String email) {
+        this.imageName = new SimpleStringProperty(imageName);
+        this.email = new SimpleStringProperty(email);
     }
     
-    public ObservableList<String> getResults () {
-        return results.get();
+    public String getImageName () {
+        return imageName.get();
     }
     
-    public void setResults (ObservableList<String> results) {
-        this.results.set(results);
+    public StringProperty imageNameProperty () {
+        return imageName;
     }
     
-    public ListProperty<String> resultsProperty () {
-        return results;
+    public String getEmail () {
+        return email.get();
     }
     
-    public String getClassName () {
-        return className.get();
-    }
-    
-    public void setClassName (String className) {
-        this.className.set(className);
-    }
-    
-    public StringProperty classNameProperty () {
-        return className;
+    public StringProperty emailProperty () {
+        return email;
     }
 }

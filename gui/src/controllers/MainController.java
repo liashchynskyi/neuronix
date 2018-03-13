@@ -5,10 +5,15 @@ import static utils.Utils.createGauge;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
+import com.jfoenix.controls.JFXTreeTableColumn;
+import com.jfoenix.controls.JFXTreeTableRow;
+import com.jfoenix.controls.JFXTreeTableView;
+import com.sun.deploy.util.ArrayUtil;
 import com.sun.management.OperatingSystemMXBean;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import eu.hansolo.medusa.Gauge;
@@ -18,14 +23,25 @@ import eu.hansolo.tilesfx.tools.FlowGridPane;
 import java.io.File;
 import java.lang.management.ManagementFactory;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Stack;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableColumn.CellDataFeatures;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -33,9 +49,11 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.Utils;
+import utils.models.ClassificationResult;
 import utils.prefs.Prefs;
 
 
@@ -67,11 +85,25 @@ public class MainController implements Initializable {
     
     //Buttons
     @FXML
-    private JFXButton close, minimize, config, train, classifier, displayConfig, loadPreTrained, loadCreated, loadImages, runForestRun;
+    private JFXButton   close,
+                        minimize,
+                        config,
+                        train,
+                        classifier,
+                        displayConfig,
+                        loadPreTrained,
+                        loadCreated,
+                        loadImages,
+                        runForestRun,
+        chdirWithImages,
+        chSingleImage,
+        classifyForest;
     
     //Checkboxes
     @FXML
-    private JFXCheckBox saveModelAfterTraining, displayConsole, saveLogs;
+    private JFXCheckBox saveModelAfterTraining,
+                        displayConsole,
+                        saveLogs;
     
     //Toggle Buttons
     @FXML
@@ -79,19 +111,29 @@ public class MainController implements Initializable {
     
     //Labels
     @FXML
-    private Label appName, descriptionOfThirdSection, descriptionOfSecondSection, projectDescription, appNameL;
+    private Label   appName,
+                    descriptionOfThirdSection,
+                    descriptionOfSecondSection,
+                    projectDescription,
+                    appNameL;
     
     //ComboBoxes
     @FXML
-    private JFXComboBox chooseModel;
+    private JFXComboBox chooseModel, chooseModelClassifier;
     
     //Text Fields
     @FXML
-    private JFXTextField epochsNumber, iterNumber, learningRateNumber;
+    private JFXTextField    epochsNumber,
+                            iterNumber,
+                            learningRateNumber;
     
     //Slider
     @FXML
     private JFXSlider splitTrainTest;
+    
+    //Progress
+    @FXML
+    private JFXProgressBar progressForestClassify;
     
     //Hyperlinks
     @FXML
@@ -99,7 +141,17 @@ public class MainController implements Initializable {
     
     //Panes
     @FXML
-    private AnchorPane menuPane, defaultPaneSection2, defaultPaneSection3, configPaneSection2, configPaneSection3, trainPaneSection2, trainPaneSection3, classifierPaneSection2, classifierPaneSection3, displayConfigPaneSection3;
+    private AnchorPane  menuPane,
+                        defaultPaneSection2,
+                        defaultPaneSection3,
+                        configPaneSection2,
+                        configPaneSection3,
+                        trainPaneSection2,
+                        trainPaneSection3,
+                        classifierPaneSection2,
+                        classifierPaneSection3,
+                        displayConfigPaneSection3,
+                        displayClassificationResults;
     @FXML
     private Pane flowScores;
     
@@ -107,9 +159,17 @@ public class MainController implements Initializable {
     @FXML
     private Text displayLoadDir, displaySaveDir;
     
+    //Table
+    @FXML
+    private TableView<ClassificationResult> tableResults;
+    
     //Icons
     @FXML
-    private MaterialDesignIconView gpuModeIcon, workspaceModeIcon, logIcon, consoleIcon, trainIcon;
+    private MaterialDesignIconView  gpuModeIcon,
+                                    workspaceModeIcon,
+                                    logIcon,
+                                    consoleIcon,
+                                    trainIcon;
     
     //Console Text Area
     @FXML
@@ -122,6 +182,40 @@ public class MainController implements Initializable {
     
     @Override
     public void initialize (URL location, ResourceBundle resources) {
+        
+        //Try with table
+    
+        ObservableList<ClassificationResult> list = FXCollections.observableArrayList(
+            new ClassificationResult("name1", "mailto2"),
+            new ClassificationResult("name2", "mailto2")
+           );
+    
+        TableColumn<ClassificationResult, String> userNameCol //
+            = new TableColumn<ClassificationResult, String>("User Name");
+        
+        
+    
+        // Create column Email (Data type of String).
+        TableColumn<ClassificationResult, String> emailCol//
+            = new TableColumn<ClassificationResult, String>("Email");
+        
+        
+        userNameCol.setCellValueFactory((cell) -> {
+            return cell.getValue().imageNameProperty();
+        });
+    
+        emailCol.setCellValueFactory((cell) -> {
+            return cell.getValue().emailProperty();
+        });
+        
+        tableResults.getColumns().addAll(userNameCol, emailCol);
+        tableResults.setItems(list);
+        
+        
+                                    
+        
+        //End
+        
         Prefs prefs = new Prefs(saveModelAfterTraining, displayConsole, saveLogs, gpuMode,
                                 workspaceMode);
         prefs.toUpdate(displayLoadDir, displaySaveDir, gpuModeIcon, workspaceModeIcon, trainIcon,
@@ -135,7 +229,7 @@ public class MainController implements Initializable {
         //chooseModel.setValue("LeNet ASH67");
         
         defaultPaneSection2.toFront();
-        defaultPaneSection3.toFront();
+        //defaultPaneSection3.toFront();
         
         stackS2.push(defaultPaneSection2);
         stackS3.push(defaultPaneSection3);
@@ -144,6 +238,7 @@ public class MainController implements Initializable {
         displayConfigPaneSection3.setTranslateX(displayConfigPaneSection3.getPrefWidth());
         trainPaneSection3.setTranslateX(trainPaneSection3.getPrefWidth());
         classifierPaneSection3.setTranslateX(classifierPaneSection3.getPrefWidth());
+        //displayClassificationResults.setTranslateX(displayClassificationResults.getPrefWidth());
         
         configPaneSection2.setTranslateY(configPaneSection2.getPrefHeight() + 32);
         trainPaneSection2.setTranslateY(trainPaneSection2.getPrefHeight() + 32);
