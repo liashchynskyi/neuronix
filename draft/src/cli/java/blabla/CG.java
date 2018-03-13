@@ -1,5 +1,7 @@
 package blabla;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.commons.io.FilenameUtils;
 import org.datavec.api.io.filters.BalancedPathFilter;
 import org.datavec.api.io.labels.ParentPathLabelGenerator;
@@ -18,10 +20,12 @@ import org.deeplearning4j.nn.conf.ComputationGraphConfiguration;
 import org.deeplearning4j.nn.conf.GradientNormalization;
 import org.deeplearning4j.nn.conf.MultiLayerConfiguration;
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration;
+import org.deeplearning4j.nn.conf.NeuralNetConfiguration.ListBuilder;
 import org.deeplearning4j.nn.conf.distribution.Distribution;
 import org.deeplearning4j.nn.conf.distribution.NormalDistribution;
 import org.deeplearning4j.nn.conf.inputs.InputType;
 import org.deeplearning4j.nn.conf.layers.*;
+import org.deeplearning4j.nn.conf.stepfunctions.StepFunction;
 import org.deeplearning4j.nn.graph.ComputationGraph;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.nn.weights.WeightInit;
@@ -168,6 +172,21 @@ public class CG {
                 .backprop(true).pretrain(false)
                 .setInputType(InputType.convolutional(height, width, channels))
                 .build();
+    
+        ListBuilder builder = new NeuralNetConfiguration.Builder()
+                                                    .seed(seed)
+                                                    .iterations(iterations)
+                                                    .dist(new NormalDistribution(0.0, 0.01))
+                                                    .regularization(true)
+                                                    .l2(6*2e-6) //5*1e-7 100% cyt // 54*1e-5 13*1e-4 2*1e-5 80% hist
+                                                    .activation(Activation.RELU) // RELU
+                                                    .learningRate(7*1e-3) //5*1e-3 100% cyt // 7*1e-3 80% hist
+                                                    .weightInit(WeightInit.RELU)
+                                                    .gradientNormalization(GradientNormalization.RenormalizeL2PerLayer)
+                                                    .optimizationAlgo(OptimizationAlgorithm.LINE_GRADIENT_DESCENT)//STOCHASTIC_GRADIENT_DESCENT
+                                                    .updater(new Nesterovs(0.9))
+                                                    .list();
+        
         return conf;
     }
     private static MultiLayerConfiguration custom() {

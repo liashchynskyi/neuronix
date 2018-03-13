@@ -45,13 +45,14 @@ public class MainController implements Initializable {
     protected final Logger log = LoggerFactory.getLogger(MainController.class);
     
     //Button names
-    private final String CONFIG         = "Налаштування";
-    private final String TRAINING       = "Навчання";
-    private final String CLASSIFICATION = "Класифікація";
-    private final String TRAINING_PR    = "Процес навчання";
-    private final String RAM_USES       = "Використання ОЗУ";
-    private final String CONFIG_DESC    = "Опис налаштувань";
-    private final String CURRENT_CONF   = "Поточні налаштування";
+    private final String CONFIG             = "Налаштування";
+    private final String TRAINING           = "Навчання";
+    private final String CLASSIFICATION     = "Класифікація";
+    private final String TRAINING_PR        = "Процес навчання";
+    private final String RAM_USES           = "Використання ОЗУ";
+    private final String CONFIG_DESC        = "Опис налаштувань";
+    private final String CURRENT_CONF       = "Поточні налаштування";
+    private final String CLASSIFICATION_RES = "Результати класифікації";
     
     //Stack for switching the order of the panes
     Stack<AnchorPane> stackS2 = new Stack<>();
@@ -118,6 +119,7 @@ public class MainController implements Initializable {
     private Gauge trainingGauge, accuracyGauge, precisionGauge, recallGauge, f1Gauge;
     private Tile trainingTile, ramUsesTile, accuracyTile, precisionTile, recallTile, f1Tile;
     
+    
     @Override
     public void initialize (URL location, ResourceBundle resources) {
         Prefs prefs = new Prefs(saveModelAfterTraining, displayConsole, saveLogs, gpuMode,
@@ -178,7 +180,7 @@ public class MainController implements Initializable {
         
         classifier.setOnAction(e -> {
             Utils.switchPane(classifierPaneSection2, classifierPaneSection3, stackS2, stackS3,
-                             CLASSIFICATION, "Результати класифікації", descriptionOfSecondSection,
+                             CLASSIFICATION, CLASSIFICATION_RES, descriptionOfSecondSection,
                              descriptionOfThirdSection, openNav3, openNav2);
         });
         

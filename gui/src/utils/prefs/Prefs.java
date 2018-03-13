@@ -204,6 +204,13 @@ public class Prefs {
         this.logIc = logIc;
     }
     
+    public void set (String prop, String value) {
+        prefs.put(prop, value);
+    }
+    
+    public String get(String prop) {
+        return prefs.get(prop, null);
+    }
     
     public void init () {
         
