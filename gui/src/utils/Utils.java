@@ -6,7 +6,12 @@ import com.sun.management.OperatingSystemMXBean;
 import eu.hansolo.medusa.Gauge;
 import eu.hansolo.medusa.GaugeBuilder;
 import eu.hansolo.tilesfx.Tile;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Stack;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -21,6 +26,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
+import org.apache.commons.io.FilenameUtils;
 
 public class Utils {
     
@@ -145,6 +151,17 @@ public class Utils {
     
     public static void updateProgress (JFXProgressBar bar) {
         bar.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
+    }
+    
+    public static void writeJSON(String path, String json) throws IOException {
+        FileWriter file = new FileWriter(path);
+        file.write(json);
+        file.close();
+    }
+    
+    public static String readJSON (String path) throws IOException {
+        byte[] encoded = Files.readAllBytes(Paths.get(path));
+        return new String(encoded, Charset.forName("UTF8"));
     }
     
     

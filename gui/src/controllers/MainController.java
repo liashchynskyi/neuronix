@@ -269,6 +269,13 @@ public class MainController implements Initializable {
 //        }
 //
     
+//        try {
+//            System.out.println(Utils.readJSON(FilenameUtils.concat(System.getProperty("user.dir"), "gui/src/model.json")));
+//        }
+//        catch (IOException e) {
+//
+//        }
+    
         //End
         
         Prefs prefs = new Prefs(saveModelAfterTraining, displayConsole, /*saveLogs,*/ gpuMode,
