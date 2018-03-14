@@ -185,34 +185,35 @@ public class MainController implements Initializable {
         
         //Try with table
     
-        ObservableList<ClassificationResult> list = FXCollections.observableArrayList(
-            new ClassificationResult("name1", "mailto2"),
-            new ClassificationResult("name2", "mailto2")
-           );
-    
-        TableColumn<ClassificationResult, String> userNameCol //
-            = new TableColumn<ClassificationResult, String>("User Name");
+//        ObservableList<ClassificationResult> list = FXCollections.observableArrayList(
+//            new ClassificationResult("name1", "mailto2"),
+//            new ClassificationResult("name2", "mailto2")
+//           );
+//
+//        TableColumn<ClassificationResult, String> userNameCol //
+//            = new TableColumn<ClassificationResult, String>("User Name");
+//
+//
+//
+//        // Create column Email (Data type of String).
+//        TableColumn<ClassificationResult, String> emailCol//
+//            = new TableColumn<ClassificationResult, String>("Email");
+//
+//
+//        userNameCol.setCellValueFactory((cell) -> {
+//            return cell.getValue().imageNameProperty();
+//        });
+//
+//        emailCol.setCellValueFactory((cell) -> {
+//            return cell.getValue().emailProperty();
+//        });
+//
+//        tableResults.getColumns().addAll(userNameCol, emailCol);
+//        tableResults.setItems(list);
+//
         
-        
-    
-        // Create column Email (Data type of String).
-        TableColumn<ClassificationResult, String> emailCol//
-            = new TableColumn<ClassificationResult, String>("Email");
-        
-        
-        userNameCol.setCellValueFactory((cell) -> {
-            return cell.getValue().imageNameProperty();
-        });
-    
-        emailCol.setCellValueFactory((cell) -> {
-            return cell.getValue().emailProperty();
-        });
-        
-        tableResults.getColumns().addAll(userNameCol, emailCol);
-        tableResults.setItems(list);
-        
-        
-                                    
+        log.info("Test logger into file");
+        log.debug("Test logger into file");
         
         //End
         
@@ -229,7 +230,7 @@ public class MainController implements Initializable {
         //chooseModel.setValue("LeNet ASH67");
         
         defaultPaneSection2.toFront();
-        //defaultPaneSection3.toFront();
+        defaultPaneSection3.toFront();
         
         stackS2.push(defaultPaneSection2);
         stackS3.push(defaultPaneSection3);
@@ -238,7 +239,7 @@ public class MainController implements Initializable {
         displayConfigPaneSection3.setTranslateX(displayConfigPaneSection3.getPrefWidth());
         trainPaneSection3.setTranslateX(trainPaneSection3.getPrefWidth());
         classifierPaneSection3.setTranslateX(classifierPaneSection3.getPrefWidth());
-        //displayClassificationResults.setTranslateX(displayClassificationResults.getPrefWidth());
+        displayClassificationResults.setTranslateX(displayClassificationResults.getPrefWidth());
         
         configPaneSection2.setTranslateY(configPaneSection2.getPrefHeight() + 32);
         trainPaneSection2.setTranslateY(trainPaneSection2.getPrefHeight() + 32);

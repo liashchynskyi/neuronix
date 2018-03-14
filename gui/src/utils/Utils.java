@@ -25,19 +25,6 @@ import javafx.util.Duration;
 public class Utils {
     
     static OutputStream os;
-    static StringProperty log = new SimpleStringProperty("");
-    
-    public static String getLog () {
-        return log.get();
-    }
-    
-    public static StringProperty logProperty () {
-        return log;
-    }
-    
-    public static void log (String log) {
-        Utils.log.set(log);
-    }
     
     public static void switch3Pane (AnchorPane pane3, Stack stack, String name, Label description,
                                     TranslateTransition open3) {
