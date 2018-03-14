@@ -10,27 +10,38 @@ import javafx.collections.ObservableList;
 
 public class ClassificationResult {
     
-    private StringProperty imageName;
-    private StringProperty email;
+    private StringProperty fileName;
+    private StringProperty arrResults;
+    private StringProperty result;
     
-    public ClassificationResult (String imageName, String email) {
-        this.imageName = new SimpleStringProperty(imageName);
-        this.email = new SimpleStringProperty(email);
+    public ClassificationResult (StringProperty fileName, StringProperty arrResults,
+                                 StringProperty result) {
+        this.fileName = fileName;
+        this.arrResults = arrResults;
+        this.result = result;
     }
     
-    public String getImageName () {
-        return imageName.get();
+    public String getFileName () {
+        return fileName.get();
     }
     
-    public StringProperty imageNameProperty () {
-        return imageName;
+    public StringProperty fileNameProperty () {
+        return fileName;
     }
     
-    public String getEmail () {
-        return email.get();
+    public String getArrResults () {
+        return arrResults.get();
     }
     
-    public StringProperty emailProperty () {
-        return email;
+    public StringProperty arrResultsProperty () {
+        return arrResults;
+    }
+    
+    public String getResult () {
+        return result.get();
+    }
+    
+    public StringProperty resultProperty () {
+        return result;
     }
 }
