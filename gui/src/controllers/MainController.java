@@ -212,8 +212,11 @@ public class MainController implements Initializable {
 //        tableResults.setItems(list);
 //
         
-        log.info("Test logger into file");
-        log.debug("Test logger into file");
+//        log.info("Test logger into file");
+//        log.debug("Test logger into file");
+
+        
+        
         
         //End
         
@@ -222,11 +225,15 @@ public class MainController implements Initializable {
         prefs.toUpdate(displayLoadDir, displaySaveDir, gpuModeIcon, workspaceModeIcon, trainIcon,
                        consoleIcon/*, logIcon*/);
         prefs.init();
+    
+        ChooseModelController chooseModelController = new ChooseModelController(prefs, chooseModel, chooseModelClassifier);
+        chooseModelController.populateSavedCombo();
+        
         
         initializeGauges();
         
-        chooseModel.getItems()
-                   .addAll("LeNet_224", "LeNet_128");
+//        chooseModel.getItems()
+//                   .addAll("LeNet_224", "LeNet_128");
         //chooseModel.setValue("LeNet ASH67");
         
         defaultPaneSection2.toFront();
