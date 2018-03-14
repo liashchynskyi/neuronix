@@ -217,10 +217,10 @@ public class MainController implements Initializable {
         
         //End
         
-        Prefs prefs = new Prefs(saveModelAfterTraining, displayConsole, saveLogs, gpuMode,
+        Prefs prefs = new Prefs(saveModelAfterTraining, displayConsole, /*saveLogs,*/ gpuMode,
                                 workspaceMode);
         prefs.toUpdate(displayLoadDir, displaySaveDir, gpuModeIcon, workspaceModeIcon, trainIcon,
-                       consoleIcon, logIcon);
+                       consoleIcon/*, logIcon*/);
         prefs.init();
         
         initializeGauges();
@@ -310,14 +310,14 @@ public class MainController implements Initializable {
             }
         });
         
-        saveLogs.setOnAction(e -> {
-            if (saveLogs.isSelected()) {
-                prefs.setCurrentLogState(true);
-            }
-            else {
-                prefs.setCurrentLogState(false);
-            }
-        });
+//        saveLogs.setOnAction(e -> {
+//            if (saveLogs.isSelected()) {
+//                prefs.setCurrentLogState(true);
+//            }
+//            else {
+//                prefs.setCurrentLogState(false);
+//            }
+//        });
         
         gpuMode.setOnAction(e -> {
             if (gpuMode.isSelected()) {

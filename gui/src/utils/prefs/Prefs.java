@@ -17,7 +17,7 @@ public class Prefs {
     
     private JFXCheckBox     save;
     private JFXCheckBox     console;
-    private JFXCheckBox     log;
+   // private JFXCheckBox     log;
     private JFXToggleButton gpu;
     private JFXToggleButton workspace;
     
@@ -32,16 +32,16 @@ public class Prefs {
     private StringProperty  currentSaveDir        = new SimpleStringProperty();
     private BooleanProperty currentSaveState      = new SimpleBooleanProperty();
     private BooleanProperty currentConsoleState   = new SimpleBooleanProperty();
-    private BooleanProperty currentLogState       = new SimpleBooleanProperty();
+    //private BooleanProperty currentLogState       = new SimpleBooleanProperty();
     private BooleanProperty currentGpuState       = new SimpleBooleanProperty();
     private BooleanProperty currentWorkspaceState = new SimpleBooleanProperty();
     
     
-    public Prefs (JFXCheckBox save, JFXCheckBox console, JFXCheckBox log, JFXToggleButton gpu,
+    public Prefs (JFXCheckBox save, JFXCheckBox console, /*JFXCheckBox log,*/ JFXToggleButton gpu,
                   JFXToggleButton workspace) {
         this.save = save;
         this.console = console;
-        this.log = log;
+        //this.log = log;
         this.gpu = gpu;
         this.workspace = workspace;
     }
@@ -122,26 +122,26 @@ public class Prefs {
     }
     
     
-    public boolean isCurrentLogState () {
-        return currentLogState.get();
-    }
-    
-    
-    public void setCurrentLogState (boolean currentLogState) {
-        this.currentLogState.set(currentLogState);
-        prefs.putBoolean("logState", currentLogState);
-        if (currentLogState) {
-            logIc.setGlyphName("CHECKBOX_MARKED_OUTLINE");
-        }
-        else {
-            logIc.setGlyphName("CHECKBOX_BLANK_OUTLINE");
-        }
-    }
-    
-    
-    public BooleanProperty currentLogStateProperty () {
-        return currentLogState;
-    }
+//    public boolean isCurrentLogState () {
+//        return currentLogState.get();
+//    }
+//
+//
+//    public void setCurrentLogState (boolean currentLogState) {
+//        this.currentLogState.set(currentLogState);
+//        prefs.putBoolean("logState", currentLogState);
+//        if (currentLogState) {
+//            logIc.setGlyphName("CHECKBOX_MARKED_OUTLINE");
+//        }
+//        else {
+//            logIc.setGlyphName("CHECKBOX_BLANK_OUTLINE");
+//        }
+//    }
+//
+//
+//    public BooleanProperty currentLogStateProperty () {
+//        return currentLogState;
+//    }
     
     
     public boolean isCurrentGpuState () {
@@ -194,14 +194,14 @@ public class Prefs {
     
     public void toUpdate (Text load, Text save, MaterialDesignIconView gpuMode,
                           MaterialDesignIconView workspaceMode, MaterialDesignIconView trainIc,
-                          MaterialDesignIconView consoleIc, MaterialDesignIconView logIc) {
+                          MaterialDesignIconView consoleIc /*MaterialDesignIconView logIc*/) {
         this.loadDir = load;
         this.saveDir = save;
         this.gpuMode = gpuMode;
         this.workspaceMode = workspaceMode;
         this.trainIc = trainIc;
         this.consoleIc = consoleIc;
-        this.logIc = logIc;
+        //this.logIc = logIc;
     }
     
     public void set (String prop, String value) {
@@ -223,7 +223,7 @@ public class Prefs {
             prefs.get("saveDir", FilenameUtils.concat(System.getProperty("user.dir"), "saved")));
         setCurrentSaveState(prefs.getBoolean("saveState", true));
         setCurrentConsoleState(prefs.getBoolean("consoleState", false));
-        setCurrentLogState(prefs.getBoolean("logState", true));
+        //setCurrentLogState(prefs.getBoolean("logState", true));
         setCurrentGpuState(prefs.getBoolean("gpuState", false));
         setCurrentWorkspaceState(prefs.getBoolean("workspaceState", false));
         
@@ -235,8 +235,8 @@ public class Prefs {
             .bindBidirectional(this.currentSaveStateProperty());
         console.selectedProperty()
                .bindBidirectional(this.currentConsoleStateProperty());
-        log.selectedProperty()
-           .bindBidirectional(this.currentLogStateProperty());
+//        log.selectedProperty()
+//           .bindBidirectional(this.currentLogStateProperty());
         gpu.selectedProperty()
            .bindBidirectional(this.currentGpuStateProperty());
         workspace.selectedProperty()
