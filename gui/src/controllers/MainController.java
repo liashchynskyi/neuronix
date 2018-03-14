@@ -2,6 +2,7 @@ package controllers;
 
 import static utils.Utils.createGauge;
 
+import com.alibaba.fastjson.JSON;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
@@ -21,6 +22,8 @@ import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.TileBuilder;
 import eu.hansolo.tilesfx.tools.FlowGridPane;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.net.URL;
 import java.util.Arrays;
@@ -50,10 +53,14 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.Utils;
 import utils.models.ClassificationResult;
+import utils.models.json.Layer;
+import utils.models.json.Model;
 import utils.prefs.Prefs;
 
 
@@ -214,10 +221,54 @@ public class MainController implements Initializable {
         
 //        log.info("Test logger into file");
 //        log.debug("Test logger into file");
-
-        
-        
-        
+    
+    
+//        Model json = new Model();
+//
+//        Layer convInit = new Layer();
+//        convInit.setId(0);
+//        convInit.setName("conv1");
+//        convInit.setType("conv");
+//        convInit.setChannels(3);
+//        convInit.setOut(50);
+//        convInit.setKernel(new int[]{5, 5});
+//        convInit.setStride(new int[]{1, 1});
+//        convInit.setPadding(new int[]{0, 0});
+//        convInit.setBias(0);
+//
+//
+//        json.setName("LeNet");
+//        json.setImageSize(224);
+//        json.setChannels(3);
+//        json.setLabels(Arrays.asList("label1", "label2"));
+//        json.setSeed(42);
+//        json.setIterations(1);
+//        json.setRegularization(true);
+//        json.setL2(5e-1);
+//        json.setLearningRate(7e-3);
+//        json.setActivation("relu");
+//        json.setWeightInit("relu");
+//        json.setGradientNormalization("gr");
+//        json.setOptimizationAlgo("op");
+//        json.setUpdater("nesterovs");
+//        json.setMomentum(0.9);
+//        json.setMiniBatch(true);
+//        json.setLayers(Arrays.asList(convInit));
+//
+//        String jsonObj = JSON.toJSONString(json, true);
+//        System.out.println(jsonObj);
+//        try {
+//            FileWriter file = new FileWriter(FilenameUtils.concat(System.getProperty("user.dir"), "gui/src/model.json"));
+//            file.write(jsonObj);
+//            file.close();
+//            Model deser = JSON.parseObject(jsonObj, Model.class);
+//            System.out.println(deser.getActivation());
+//        }
+//        catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+    
         //End
         
         Prefs prefs = new Prefs(saveModelAfterTraining, displayConsole, /*saveLogs,*/ gpuMode,
