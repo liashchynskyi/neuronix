@@ -1,0 +1,73 @@
+{
+  "modelName": "LeNet",
+  "imageSize": 224,
+  "channels": 3,
+  "labels": [
+    "class1",
+    "class2",
+    "class3",
+    "class4",
+    "class5"
+  ],
+  "seed": 42,
+  "iterations": 1,
+  "regularization": true,
+  "l2": "0.000054",
+  "learningRate": "0.007",
+  "activation": "relu",
+  "weightInit": "relu",
+  "gradientNormalization": "RenormalizeL2PerLayer",
+  "optimizationAlgo": "STOCHASTIC_GRADIENT_DESCENT",
+  "updater": "nesterovs",
+  "momentum": 0.9,
+  "miniBatch": true,
+  "layers": [
+    {
+      "id": 0,
+      "type": "conv",
+      "name": "cnn1",
+      "channels": 3,
+      "out": 50,
+      "kernel": [5, 5],
+      "stride": [1, 1],
+      "padding": [0, 0],
+      "bias": 0
+    },
+    {
+      "id": 1,
+      "type": "pool",
+      "name": "maxpool1",
+      "kernel": [2, 2],
+      "stride": [2, 2]
+    },
+    {
+      "id": 2,
+      "type": "conv",
+      "name": "cnn2",
+      "out": 100,
+      "kernel": [5, 5],
+      "stride": [5, 5],
+      "padding": [1, 1],
+      "bias": 0
+    },
+    {
+      "id": 3,
+      "type": "pool",
+      "name": "maxpool2",
+      "kernel": [2, 2],
+      "stride": [2, 2]
+    },
+    {
+      "id": 4,
+      "type": "dense",
+      "out": 500,
+      "activation": "relu"
+    },
+    {
+      "id": 5,
+      "type": "output",
+      "out": 5,
+      "activation": "softmax"
+    }
+  ]
+}
