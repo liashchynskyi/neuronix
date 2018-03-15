@@ -21,6 +21,7 @@ import org.deeplearning4j.nn.conf.GradientNormalization;
 import org.deeplearning4j.nn.conf.MultiLayerConfiguration;
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration;
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration.ListBuilder;
+import org.deeplearning4j.nn.conf.Updater;
 import org.deeplearning4j.nn.conf.distribution.Distribution;
 import org.deeplearning4j.nn.conf.distribution.NormalDistribution;
 import org.deeplearning4j.nn.conf.inputs.InputType;
@@ -42,6 +43,7 @@ import org.nd4j.linalg.activations.Activation;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
 import org.nd4j.linalg.dataset.api.preprocessor.DataNormalization;
 import org.nd4j.linalg.dataset.api.preprocessor.ImagePreProcessingScaler;
+import org.nd4j.linalg.learning.config.AdaDelta;
 import org.nd4j.linalg.learning.config.Adam;
 import org.nd4j.linalg.learning.config.Nesterovs;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
@@ -172,7 +174,6 @@ public class CG {
                 .backprop(true).pretrain(false)
                 .setInputType(InputType.convolutional(height, width, channels))
                 .build();
-    
         ListBuilder builder = new NeuralNetConfiguration.Builder()
                                                     .seed(seed)
                                                     .iterations(iterations)
@@ -186,9 +187,10 @@ public class CG {
                                                     .optimizationAlgo(OptimizationAlgorithm.LINE_GRADIENT_DESCENT)//STOCHASTIC_GRADIENT_DESCENT
                                                     .updater(new Nesterovs(0.9))
                                                     .list();
-        
         return conf;
     }
+    
+    
     private static MultiLayerConfiguration custom() {
         MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
                 .seed(seed)

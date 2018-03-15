@@ -1,5 +1,6 @@
 package utils;
 
+import com.alibaba.fastjson.JSON;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTextArea;
 import com.sun.management.OperatingSystemMXBean;
@@ -27,6 +28,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import org.apache.commons.io.FilenameUtils;
+import utils.models.json.Model;
 
 public class Utils {
     
@@ -163,6 +165,15 @@ public class Utils {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, Charset.forName("UTF8"));
     }
+    
+    public static String encodeJson (Model model) {
+        return JSON.toJSONString(model, true);
+    }
+    
+    public static Model decodeJson(String json) {
+        return JSON.parseObject(json, Model.class);
+    }
+    
     
     
 }

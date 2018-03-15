@@ -1,10 +1,26 @@
 package utils.models.json;
 
 public class Layer {
+    
     private Integer id;
-    private String type, name, activation;
-    private Integer channels, out, bias;
+    private String  type, name, activation, loss;
+    private Integer channels, out, bias, in;
     private int[] kernel, stride, padding;
+    
+    public Integer getIn () {
+        return in;
+    }
+    
+    public void setIn (Integer in) {
+        this.in = in;
+    }
+    public String getLoss () {
+        return loss;
+    }
+    
+    public void setLoss (String loss) {
+        this.loss = loss;
+    }
     
     public Integer getId () {
         return id;

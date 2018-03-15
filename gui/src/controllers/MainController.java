@@ -55,10 +55,12 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.Utils;
 import utils.models.ClassificationResult;
+import utils.models.json.JsonModelBuilder;
 import utils.models.json.Layer;
 import utils.models.json.Model;
 import utils.prefs.Prefs;
@@ -271,6 +273,18 @@ public class MainController implements Initializable {
     
 //        try {
 //            System.out.println(Utils.readJSON(FilenameUtils.concat(System.getProperty("user.dir"), "gui/src/model.json")));
+//        }
+//        catch (IOException e) {
+//
+//        }
+    
+//        try {
+//            String modeljson = Utils.readJSON(FilenameUtils.concat(System.getProperty("user.dir"), "gui/src/model.json"));
+//            Model encoded = Utils.decodeJson(modeljson);
+//            JsonModelBuilder builder = new JsonModelBuilder(encoded);
+//            MultiLayerNetwork network = builder.init().build();
+//            //System.out.println(encoded.getLayers().get(5).getLoss());
+//            System.out.println(network.toString());
 //        }
 //        catch (IOException e) {
 //
