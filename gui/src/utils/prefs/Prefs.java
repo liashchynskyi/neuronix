@@ -3,6 +3,9 @@ package utils.prefs;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXToggleButton;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.prefs.Preferences;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -10,6 +13,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.text.Text;
 import org.apache.commons.io.FilenameUtils;
+import utils.Utils;
 
 public class Prefs {
     
@@ -17,32 +21,24 @@ public class Prefs {
     
     private JFXCheckBox     save;
     private JFXCheckBox     console;
-   // private JFXCheckBox     log;
-    private JFXToggleButton gpu;
     private JFXToggleButton workspace;
     
     private Text loadDir, saveDir;
     
-    private MaterialDesignIconView gpuMode;
     private MaterialDesignIconView workspaceMode;
     private MaterialDesignIconView trainIc;
     private MaterialDesignIconView consoleIc;
-    private MaterialDesignIconView logIc;
     private StringProperty  currentLoadDir        = new SimpleStringProperty();
     private StringProperty  currentSaveDir        = new SimpleStringProperty();
     private BooleanProperty currentSaveState      = new SimpleBooleanProperty();
     private BooleanProperty currentConsoleState   = new SimpleBooleanProperty();
-    //private BooleanProperty currentLogState       = new SimpleBooleanProperty();
-    private BooleanProperty currentGpuState       = new SimpleBooleanProperty();
     private BooleanProperty currentWorkspaceState = new SimpleBooleanProperty();
     
     
-    public Prefs (JFXCheckBox save, JFXCheckBox console, /*JFXCheckBox log,*/ JFXToggleButton gpu,
+    public Prefs (JFXCheckBox save, JFXCheckBox console,
                   JFXToggleButton workspace) {
         this.save = save;
         this.console = console;
-        //this.log = log;
-        this.gpu = gpu;
         this.workspace = workspace;
     }
     
@@ -122,52 +118,6 @@ public class Prefs {
     }
     
     
-//    public boolean isCurrentLogState () {
-//        return currentLogState.get();
-//    }
-//
-//
-//    public void setCurrentLogState (boolean currentLogState) {
-//        this.currentLogState.set(currentLogState);
-//        prefs.putBoolean("logState", currentLogState);
-//        if (currentLogState) {
-//            logIc.setGlyphName("CHECKBOX_MARKED_OUTLINE");
-//        }
-//        else {
-//            logIc.setGlyphName("CHECKBOX_BLANK_OUTLINE");
-//        }
-//    }
-//
-//
-//    public BooleanProperty currentLogStateProperty () {
-//        return currentLogState;
-//    }
-    
-    
-    public boolean isCurrentGpuState () {
-        return currentGpuState.get();
-    }
-    
-    
-    public void setCurrentGpuState (boolean currentGpuState) {
-        this.currentGpuState.set(currentGpuState);
-        prefs.putBoolean("gpuState", currentGpuState);
-        if (currentGpuState) {
-            gpuMode.setGlyphName("TOGGLE_SWITCH");
-            gpu.setText("Вкл.");
-        }
-        else {
-            gpuMode.setGlyphName("TOGGLE_SWITCH_OFF");
-            gpu.setText("Викл.");
-        }
-    }
-    
-    
-    public BooleanProperty currentGpuStateProperty () {
-        return currentGpuState;
-    }
-    
-    
     public boolean isCurrentWorkspaceState () {
         return currentWorkspaceState.get();
     }
@@ -192,16 +142,15 @@ public class Prefs {
     }
     
     
-    public void toUpdate (Text load, Text save, MaterialDesignIconView gpuMode,
+    public void toUpdate (Text load, Text save,
                           MaterialDesignIconView workspaceMode, MaterialDesignIconView trainIc,
-                          MaterialDesignIconView consoleIc /*MaterialDesignIconView logIc*/) {
+                          MaterialDesignIconView consoleIc) {
         this.loadDir = load;
         this.saveDir = save;
-        this.gpuMode = gpuMode;
         this.workspaceMode = workspaceMode;
         this.trainIc = trainIc;
         this.consoleIc = consoleIc;
-        //this.logIc = logIc;
+     
     }
     
     public void set (String prop, String value) {
@@ -223,8 +172,6 @@ public class Prefs {
             prefs.get("saveDir", FilenameUtils.concat(System.getProperty("user.dir"), "saved")));
         setCurrentSaveState(prefs.getBoolean("saveState", true));
         setCurrentConsoleState(prefs.getBoolean("consoleState", false));
-        //setCurrentLogState(prefs.getBoolean("logState", true));
-        setCurrentGpuState(prefs.getBoolean("gpuState", false));
         setCurrentWorkspaceState(prefs.getBoolean("workspaceState", false));
         
         loadDir.textProperty()
@@ -235,10 +182,6 @@ public class Prefs {
             .bindBidirectional(this.currentSaveStateProperty());
         console.selectedProperty()
                .bindBidirectional(this.currentConsoleStateProperty());
-//        log.selectedProperty()
-//           .bindBidirectional(this.currentLogStateProperty());
-        gpu.selectedProperty()
-           .bindBidirectional(this.currentGpuStateProperty());
         workspace.selectedProperty()
                  .bindBidirectional(this.currentWorkspaceStateProperty());
         

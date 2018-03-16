@@ -11,10 +11,6 @@ import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
-import com.jfoenix.controls.JFXTreeTableColumn;
-import com.jfoenix.controls.JFXTreeTableRow;
-import com.jfoenix.controls.JFXTreeTableView;
-import com.sun.deploy.util.ArrayUtil;
 import com.sun.management.OperatingSystemMXBean;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import eu.hansolo.medusa.Gauge;
@@ -22,29 +18,17 @@ import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.TileBuilder;
 import eu.hansolo.tilesfx.tools.FlowGridPane;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Stack;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
-import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.TreeTableColumn.CellDataFeatures;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -52,17 +36,10 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
-import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.Utils;
 import utils.models.ClassificationResult;
-import utils.models.json.JsonModelBuilder;
-import utils.models.json.Layer;
-import utils.models.json.Model;
 import utils.prefs.Prefs;
 
 
@@ -111,12 +88,11 @@ public class MainController implements Initializable {
     //Checkboxes
     @FXML
     private JFXCheckBox saveModelAfterTraining,
-                        displayConsole,
-                        saveLogs;
+                        displayConsole;
     
     //Toggle Buttons
     @FXML
-    private JFXToggleButton gpuMode, workspaceMode;
+    private JFXToggleButton workspaceMode;
     
     //Labels
     @FXML
@@ -124,7 +100,8 @@ public class MainController implements Initializable {
                     descriptionOfThirdSection,
                     descriptionOfSecondSection,
                     projectDescription,
-                    appNameL;
+                    appNameL,
+                    trainingLabelProgress;
     
     //ComboBoxes
     @FXML
@@ -174,9 +151,7 @@ public class MainController implements Initializable {
     
     //Icons
     @FXML
-    private MaterialDesignIconView  gpuModeIcon,
-                                    workspaceModeIcon,
-                                    logIcon,
+    private MaterialDesignIconView  workspaceModeIcon,
                                     consoleIcon,
                                     trainIcon;
     
@@ -192,120 +167,19 @@ public class MainController implements Initializable {
     @Override
     public void initialize (URL location, ResourceBundle resources) {
         
-        //Try with table
-    
-//        ObservableList<ClassificationResult> list = FXCollections.observableArrayList(
-//            new ClassificationResult("name1", "mailto2"),
-//            new ClassificationResult("name2", "mailto2")
-//           );
-//
-//        TableColumn<ClassificationResult, String> userNameCol //
-//            = new TableColumn<ClassificationResult, String>("User Name");
-//
-//
-//
-//        // Create column Email (Data type of String).
-//        TableColumn<ClassificationResult, String> emailCol//
-//            = new TableColumn<ClassificationResult, String>("Email");
-//
-//
-//        userNameCol.setCellValueFactory((cell) -> {
-//            return cell.getValue().imageNameProperty();
-//        });
-//
-//        emailCol.setCellValueFactory((cell) -> {
-//            return cell.getValue().emailProperty();
-//        });
-//
-//        tableResults.getColumns().addAll(userNameCol, emailCol);
-//        tableResults.setItems(list);
-//
-        
-//        log.info("Test logger into file");
-//        log.debug("Test logger into file");
-    
-    
-//        Model json = new Model();
-//
-//        Layer convInit = new Layer();
-//        convInit.setId(0);
-//        convInit.setName("conv1");
-//        convInit.setType("conv");
-//        convInit.setChannels(3);
-//        convInit.setOut(50);
-//        convInit.setKernel(new int[]{5, 5});
-//        convInit.setStride(new int[]{1, 1});
-//        convInit.setPadding(new int[]{0, 0});
-//        convInit.setBias(0);
-//
-//
-//        json.setName("LeNet");
-//        json.setImageSize(224);
-//        json.setChannels(3);
-//        json.setLabels(Arrays.asList("label1", "label2"));
-//        json.setSeed(42);
-//        json.setIterations(1);
-//        json.setRegularization(true);
-//        json.setL2(5e-1);
-//        json.setLearningRate(7e-3);
-//        json.setActivation("relu");
-//        json.setWeightInit("relu");
-//        json.setGradientNormalization("gr");
-//        json.setOptimizationAlgo("op");
-//        json.setUpdater("nesterovs");
-//        json.setMomentum(0.9);
-//        json.setMiniBatch(true);
-//        json.setLayers(Arrays.asList(convInit));
-//
-//        String jsonObj = JSON.toJSONString(json, true);
-//        System.out.println(jsonObj);
-//        try {
-//            FileWriter file = new FileWriter(FilenameUtils.concat(System.getProperty("user.dir"), "gui/src/model.json"));
-//            file.write(jsonObj);
-//            file.close();
-//            Model deser = JSON.parseObject(jsonObj, Model.class);
-//            System.out.println(deser.getActivation());
-//        }
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-    
-//        try {
-//            System.out.println(Utils.readJSON(FilenameUtils.concat(System.getProperty("user.dir"), "gui/src/model.json")));
-//        }
-//        catch (IOException e) {
-//
-//        }
-    
-//        try {
-//            String modeljson = Utils.readJSON(FilenameUtils.concat(System.getProperty("user.dir"), "gui/src/model.json"));
-//            Model encoded = Utils.decodeJson(modeljson);
-//            JsonModelBuilder builder = new JsonModelBuilder(encoded);
-//            MultiLayerNetwork network = builder.init().build();
-//            //System.out.println(encoded.getLayers().get(5).getLoss());
-//            System.out.println(network.toString());
-//        }
-//        catch (IOException e) {
-//
-//        }
-    
-        //End
-        
-        Prefs prefs = new Prefs(saveModelAfterTraining, displayConsole, /*saveLogs,*/ gpuMode,
+        Prefs prefs = new Prefs(saveModelAfterTraining, displayConsole,
                                 workspaceMode);
-        prefs.toUpdate(displayLoadDir, displaySaveDir, gpuModeIcon, workspaceModeIcon, trainIcon,
-                       consoleIcon/*, logIcon*/);
+        prefs.toUpdate(displayLoadDir, displaySaveDir, workspaceModeIcon, trainIcon,
+                       consoleIcon);
         prefs.init();
     
         ChooseModelController chooseModelController = new ChooseModelController(prefs, chooseModel, chooseModelClassifier);
         chooseModelController.populateSavedCombo();
         chooseModelController.populateLoadedCombo();
         
-        TrainingController trainingController = new TrainingController(chooseModelController, epochsNumber, iterNumber, learningRateNumber, splitTrainTest);
-        
-        
         initializeGauges();
+        TrainingController trainingController = new TrainingController(chooseModelController, epochsNumber, iterNumber, learningRateNumber, splitTrainTest,
+                                                                       trainingGauge, log, prefs, trainingLabelProgress);
         
         
         defaultPaneSection2.toFront();
@@ -389,15 +263,6 @@ public class MainController implements Initializable {
             }
         });
         
-        gpuMode.setOnAction(e -> {
-            if (gpuMode.isSelected()) {
-                prefs.setCurrentGpuState(true);
-            }
-            else {
-                prefs.setCurrentGpuState(false);
-            }
-        });
-        
         workspaceMode.setOnAction(e -> {
             if (workspaceMode.isSelected()) {
                 prefs.setCurrentWorkspaceState(true);
@@ -416,7 +281,7 @@ public class MainController implements Initializable {
         });
         
         runForestRun.setOnAction(e -> {
-            trainingController.train();
+            trainingController.train(accuracyGauge, precisionGauge, recallGauge, f1Gauge);
         });
         
     }

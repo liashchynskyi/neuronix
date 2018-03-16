@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Model {
-    private String name;
+    private String modelName;
     private Integer imageSize;
     private Integer channels, numLabels;
     private List<String> labels = new ArrayList<>();
@@ -22,12 +22,12 @@ public class Model {
     private Boolean miniBatch;
     private List<Layer> layers = new ArrayList<>();
     
-    public String getName () {
-        return name;
+    public String getModelName () {
+        return modelName;
     }
     
-    public void setName (String name) {
-        this.name = name;
+    public void setModelName (String modelName) {
+        this.modelName = modelName;
     }
     
     public Integer getImageSize () {

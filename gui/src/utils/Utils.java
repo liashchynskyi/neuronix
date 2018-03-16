@@ -10,9 +10,12 @@ import eu.hansolo.tilesfx.Tile;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.Field;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.Map;
 import java.util.Stack;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -118,7 +121,7 @@ public class Utils {
     }
     
     public static void monitoreRAM (OperatingSystemMXBean bean, Tile tile) {
-        new Thread(new Runnable() {
+        Thread th = new Thread(new Runnable() {
             @Override
             public void run () {
                 Timeline timeline = new Timeline(new KeyFrame(Duration.millis(2500), ae -> {
@@ -132,23 +135,32 @@ public class Utils {
                 timeline.setCycleCount(Animation.INDEFINITE);
                 timeline.play();
             }
-        }).run();
+        });
+        th.setDaemon(false);
+        th.start();
+    }
+    
+    public static void updateTrainLabel (Label label, String text) {
+        Platform.runLater(() -> {
+            label.setVisible(true);
+            label.setText(text);
+        });
     }
     
     public static void updateProgress (Gauge gauge, int epoch, int numEpochs) {
-        Platform.runLater(() -> {
+        new Thread(() -> {
             double value = 0.0;
             value = (double) epoch / (double) numEpochs * 100;
             gauge.setValue(value);
-        });
+        }).start();
     }
     
     public static void updateProgress (JFXProgressBar bar, int image, int numImages) {
-        Platform.runLater(() -> {
+        new Thread(() -> {
             double value = 0.0;
             value = (double) image / (double) numImages * 100;
             bar.setProgress(value);
-        });
+        }).start();
     }
     
     public static void updateProgress (JFXProgressBar bar) {
@@ -156,12 +168,12 @@ public class Utils {
     }
     
     public static void updateScores (Gauge a, Gauge p, Gauge r, Gauge f, double[] scores) {
-        Platform.runLater(() -> {
-            a.setValue(scores[0]);
-            p.setValue(scores[1]);
-            r.setValue(scores[2]);
-            f.setValue(scores[3]);
-        });
+        new Thread(() -> {
+            a.setValue(scores[0] * 100.0);
+            p.setValue(scores[1] * 100.0);
+            r.setValue(scores[2] * 100.0);
+            f.setValue(scores[3] * 100.0);
+        }).start();
     }
     
     public static void writeJSON(String path, String json) throws IOException {
@@ -182,7 +194,5 @@ public class Utils {
     public static Model decodeJson(String json) {
         return JSON.parseObject(json, Model.class);
     }
-    
-    
     
 }

@@ -7,7 +7,9 @@ import org.deeplearning4j.nn.conf.GradientNormalization;
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration;
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration.ListBuilder;
 import org.deeplearning4j.nn.conf.Updater;
+import org.deeplearning4j.nn.conf.WorkspaceMode;
 import org.deeplearning4j.nn.conf.distribution.NormalDistribution;
+import org.deeplearning4j.nn.conf.inputs.InputType;
 import org.deeplearning4j.nn.conf.layers.ConvolutionLayer;
 import org.deeplearning4j.nn.conf.layers.DenseLayer;
 import org.deeplearning4j.nn.conf.layers.OutputLayer;
@@ -16,20 +18,24 @@ import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.nn.weights.WeightInit;
 import org.nd4j.linalg.activations.Activation;
 import org.nd4j.linalg.lossfunctions.LossFunctions.LossFunction;
+import utils.prefs.Prefs;
 
 public class JsonModelBuilder {
     
     private Model             model;
     private ListBuilder       listBuilder;
     private MultiLayerNetwork network;
+    private Prefs             prefs;
     
-    public JsonModelBuilder (Model model) {
+    public JsonModelBuilder (Model model, Prefs prefs) {
         this.model = model;
+        this.prefs = prefs;
     }
     
     
     public JsonModelBuilder init (int iter, double lRate) {
         listBuilder = new NeuralNetConfiguration.Builder()
+            .trainingWorkspaceMode(prefs.currentWorkspaceStateProperty().getValue() ? WorkspaceMode.SINGLE : WorkspaceMode.SEPARATE)
             .seed(this.model.getSeed())
             .iterations(iter != 0  ? iter : this.model.getIterations())
             .dist(new NormalDistribution(0.0, 0.01))
@@ -56,7 +62,7 @@ public class JsonModelBuilder {
                 case "init": {
                     this.listBuilder.layer(l.getId(), new ConvolutionLayer
                         .Builder(l.getKernel(), l.getStride(), l.getPadding()).name(l.getName())
-                                                                              .nIn(l.getIn())
+                                                                              .nIn(l.getChannels())
                                                                               .nOut(l.getOut())
                                                                               .biasInit(l.getBias())
                                                                               .build());
@@ -95,6 +101,9 @@ public class JsonModelBuilder {
             
         }
         
-        return new MultiLayerNetwork(this.listBuilder.build());
+        return new MultiLayerNetwork(this.listBuilder.backprop(true)
+                        .setInputType(InputType.convolutional(this.model.getImageSize(),
+                                              this.model.getImageSize(),
+                                              this.model.getChannels())).build());
     }
 }
