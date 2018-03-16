@@ -104,9 +104,9 @@ public class MainController implements Initializable {
                         loadCreated,
                         loadImages,
                         runForestRun,
-        chdirWithImages,
-        chSingleImage,
-        classifyForest;
+                        chdirWithImages,
+                        chSingleImage,
+                        classifyForest;
     
     //Checkboxes
     @FXML
@@ -300,13 +300,13 @@ public class MainController implements Initializable {
     
         ChooseModelController chooseModelController = new ChooseModelController(prefs, chooseModel, chooseModelClassifier);
         chooseModelController.populateSavedCombo();
+        chooseModelController.populateLoadedCombo();
+        
+        TrainingController trainingController = new TrainingController(chooseModelController, epochsNumber, iterNumber, learningRateNumber, splitTrainTest);
         
         
         initializeGauges();
         
-//        chooseModel.getItems()
-//                   .addAll("LeNet_224", "LeNet_128");
-        //chooseModel.setValue("LeNet ASH67");
         
         defaultPaneSection2.toFront();
         defaultPaneSection3.toFront();
@@ -389,15 +389,6 @@ public class MainController implements Initializable {
             }
         });
         
-//        saveLogs.setOnAction(e -> {
-//            if (saveLogs.isSelected()) {
-//                prefs.setCurrentLogState(true);
-//            }
-//            else {
-//                prefs.setCurrentLogState(false);
-//            }
-//        });
-        
         gpuMode.setOnAction(e -> {
             if (gpuMode.isSelected()) {
                 prefs.setCurrentGpuState(true);
@@ -416,6 +407,16 @@ public class MainController implements Initializable {
                 prefs.setCurrentWorkspaceState(false);
                 workspaceMode.setText("SEP");
             }
+        });
+        
+        loadImages.setOnAction(e -> {
+            DirectoryChooser directoryChooser  = new DirectoryChooser();
+            File             selectedDirectory = directoryChooser.showDialog(new Stage());
+            trainingController.setImagesPath(selectedDirectory.getAbsolutePath());
+        });
+        
+        runForestRun.setOnAction(e -> {
+            trainingController.train();
         });
         
     }

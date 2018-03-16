@@ -15,8 +15,6 @@ import org.deeplearning4j.nn.conf.layers.SubsamplingLayer;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.nn.weights.WeightInit;
 import org.nd4j.linalg.activations.Activation;
-import org.nd4j.linalg.learning.config.IUpdater;
-import org.nd4j.linalg.lossfunctions.LossFunctions;
 import org.nd4j.linalg.lossfunctions.LossFunctions.LossFunction;
 
 public class JsonModelBuilder {
@@ -30,15 +28,15 @@ public class JsonModelBuilder {
     }
     
     
-    public JsonModelBuilder init () {
+    public JsonModelBuilder init (int iter, double lRate) {
         listBuilder = new NeuralNetConfiguration.Builder()
             .seed(this.model.getSeed())
-            .iterations(this.model.getIterations())
+            .iterations(iter != 0  ? iter : this.model.getIterations())
             .dist(new NormalDistribution(0.0, 0.01))
             .regularization(this.model.getRegularization())
             .l2(this.model.getL2())
             .activation(Activation.fromString(this.model.getActivation().toUpperCase()))
-            .learningRate(this.model.getLearningRate())
+            .learningRate(lRate != 0 ? lRate : this.model.getLearningRate())
             .weightInit(WeightInit.valueOf(this.model.getWeightInit().toUpperCase()))
             .gradientNormalization(GradientNormalization.valueOf(this.model.getGradientNormalization()))
             .optimizationAlgo(OptimizationAlgorithm.valueOf(this.model.getOptimizationAlgo()))

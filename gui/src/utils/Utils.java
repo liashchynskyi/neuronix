@@ -155,6 +155,15 @@ public class Utils {
         bar.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
     }
     
+    public static void updateScores (Gauge a, Gauge p, Gauge r, Gauge f, double[] scores) {
+        Platform.runLater(() -> {
+            a.setValue(scores[0]);
+            p.setValue(scores[1]);
+            r.setValue(scores[2]);
+            f.setValue(scores[3]);
+        });
+    }
+    
     public static void writeJSON(String path, String json) throws IOException {
         FileWriter file = new FileWriter(path);
         file.write(json);

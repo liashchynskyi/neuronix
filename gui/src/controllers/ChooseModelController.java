@@ -10,7 +10,7 @@ public class ChooseModelController {
     
     private Prefs       prefs;
     private JFXComboBox comboBoxSavedModel, comboBoxLoadedModel;
-    private String currentSavedModel, currentClassifierModel;
+    private String currentSavedModel = null, currentClassifierModel = null;
     
     public ChooseModelController (Prefs prefs, JFXComboBox savedCombo, JFXComboBox loadCombo) {
         this.prefs = prefs;
@@ -53,10 +53,10 @@ public class ChooseModelController {
     }
     
     public String getCurrentSavedModel () {
-        return currentSavedModel;
+        return prefs.getCurrentSaveDir() + '/' + currentSavedModel;
     }
     
     public String getCurrentClassifierModel () {
-        return currentClassifierModel;
+        return prefs.getCurrentLoadDir() + '/' + currentClassifierModel;
     }
 }

@@ -6,9 +6,9 @@ import java.util.List;
 public class Model {
     private String name;
     private Integer imageSize;
-    private Integer channels;
+    private Integer channels, numLabels;
     private List<String> labels = new ArrayList<>();
-    private Integer seed;
+    private Integer seed, batchSize;
     private Integer iterations;
     private Boolean regularization;
     private Double learningRate;
@@ -64,6 +64,14 @@ public class Model {
     
     public void setSeed (Integer seed) {
         this.seed = seed;
+    }
+    
+    public Integer getNumLabels () {
+        return numLabels;
+    }
+    
+    public void setNumLabels (Integer numLabels) {
+        this.numLabels = numLabels;
     }
     
     public Integer getIterations () {
@@ -128,6 +136,14 @@ public class Model {
     
     public void setOptimizationAlgo (String optimizationAlgo) {
         this.optimizationAlgo = optimizationAlgo;
+    }
+    
+    public Integer getBatchSize () {
+        return batchSize;
+    }
+    
+    public void setBatchSize (Integer batchSize) {
+        this.batchSize = batchSize;
     }
     
     public String getUpdater () {
