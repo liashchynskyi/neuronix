@@ -87,8 +87,7 @@ public class MainController implements Initializable {
     
     //Checkboxes
     @FXML
-    private JFXCheckBox saveModelAfterTraining,
-                        displayConsole;
+    private JFXCheckBox saveModelAfterTraining;
     
     //Toggle Buttons
     @FXML
@@ -152,7 +151,6 @@ public class MainController implements Initializable {
     //Icons
     @FXML
     private MaterialDesignIconView  workspaceModeIcon,
-                                    consoleIcon,
                                     trainIcon;
     
     //Console Text Area
@@ -167,10 +165,9 @@ public class MainController implements Initializable {
     @Override
     public void initialize (URL location, ResourceBundle resources) {
         
-        Prefs prefs = new Prefs(saveModelAfterTraining, displayConsole,
+        Prefs prefs = new Prefs(saveModelAfterTraining,
                                 workspaceMode);
-        prefs.toUpdate(displayLoadDir, displaySaveDir, workspaceModeIcon, trainIcon,
-                       consoleIcon);
+        prefs.toUpdate(displayLoadDir, displaySaveDir, workspaceModeIcon, trainIcon);
         prefs.init();
     
         ChooseModelController chooseModelController = new ChooseModelController(prefs, chooseModel, chooseModelClassifier);
@@ -251,15 +248,6 @@ public class MainController implements Initializable {
             }
             else {
                 prefs.setCurrentSaveState(false);
-            }
-        });
-        
-        displayConsole.setOnAction(e -> {
-            if (displayConsole.isSelected()) {
-                prefs.setCurrentConsoleState(true);
-            }
-            else {
-                prefs.setCurrentConsoleState(false);
             }
         });
         

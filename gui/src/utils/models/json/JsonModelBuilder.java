@@ -62,7 +62,7 @@ public class JsonModelBuilder {
                 case "init": {
                     this.listBuilder.layer(l.getId(), new ConvolutionLayer
                         .Builder(l.getKernel(), l.getStride(), l.getPadding()).name(l.getName())
-                                                                              .nIn(l.getChannels())
+                                                                              .nIn(this.model.getChannels())
                                                                               .nOut(l.getOut())
                                                                               .biasInit(l.getBias())
                                                                               .build());

@@ -20,25 +20,21 @@ public class Prefs {
     private Preferences prefs;
     
     private JFXCheckBox     save;
-    private JFXCheckBox     console;
     private JFXToggleButton workspace;
     
     private Text loadDir, saveDir;
     
     private MaterialDesignIconView workspaceMode;
     private MaterialDesignIconView trainIc;
-    private MaterialDesignIconView consoleIc;
     private StringProperty  currentLoadDir        = new SimpleStringProperty();
     private StringProperty  currentSaveDir        = new SimpleStringProperty();
     private BooleanProperty currentSaveState      = new SimpleBooleanProperty();
-    private BooleanProperty currentConsoleState   = new SimpleBooleanProperty();
     private BooleanProperty currentWorkspaceState = new SimpleBooleanProperty();
     
     
-    public Prefs (JFXCheckBox save, JFXCheckBox console,
+    public Prefs (JFXCheckBox save,
                   JFXToggleButton workspace) {
         this.save = save;
-        this.console = console;
         this.workspace = workspace;
     }
     
@@ -96,28 +92,6 @@ public class Prefs {
     }
     
     
-    public boolean isCurrentConsoleState () {
-        return currentConsoleState.get();
-    }
-    
-    
-    public void setCurrentConsoleState (boolean currentConsoleState) {
-        this.currentConsoleState.set(currentConsoleState);
-        prefs.putBoolean("consoleState", currentConsoleState);
-        if (currentConsoleState) {
-            consoleIc.setGlyphName("CHECKBOX_MARKED_OUTLINE");
-        }
-        else {
-            consoleIc.setGlyphName("CHECKBOX_BLANK_OUTLINE");
-        }
-    }
-    
-    
-    public BooleanProperty currentConsoleStateProperty () {
-        return currentConsoleState;
-    }
-    
-    
     public boolean isCurrentWorkspaceState () {
         return currentWorkspaceState.get();
     }
@@ -143,13 +117,12 @@ public class Prefs {
     
     
     public void toUpdate (Text load, Text save,
-                          MaterialDesignIconView workspaceMode, MaterialDesignIconView trainIc,
-                          MaterialDesignIconView consoleIc) {
+                          MaterialDesignIconView workspaceMode, MaterialDesignIconView trainIc
+                          ) {
         this.loadDir = load;
         this.saveDir = save;
         this.workspaceMode = workspaceMode;
         this.trainIc = trainIc;
-        this.consoleIc = consoleIc;
      
     }
     
@@ -171,7 +144,6 @@ public class Prefs {
         setCurrentSaveDir(
             prefs.get("saveDir", FilenameUtils.concat(System.getProperty("user.dir"), "saved")));
         setCurrentSaveState(prefs.getBoolean("saveState", true));
-        setCurrentConsoleState(prefs.getBoolean("consoleState", false));
         setCurrentWorkspaceState(prefs.getBoolean("workspaceState", false));
         
         loadDir.textProperty()
@@ -180,8 +152,6 @@ public class Prefs {
                .bind(this.currentSaveDirProperty());
         save.selectedProperty()
             .bindBidirectional(this.currentSaveStateProperty());
-        console.selectedProperty()
-               .bindBidirectional(this.currentConsoleStateProperty());
         workspace.selectedProperty()
                  .bindBidirectional(this.currentWorkspaceStateProperty());
         

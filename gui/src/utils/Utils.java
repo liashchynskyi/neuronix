@@ -26,6 +26,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -94,7 +95,7 @@ public class Utils {
         }
     }
     
-    public static void setLogger (JFXTextArea console) {
+    public static void setLogger (TextArea console) {
         os = new TextAreaOutputStream(console);
         StreamAppender.setStaticOutputStream(os);
         

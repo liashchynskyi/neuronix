@@ -4,16 +4,10 @@ public class Layer {
     
     private Integer id;
     private String  type, name, activation, loss;
-    private Integer channels, out, bias, in;
+    private Integer out, bias;
     private int[] kernel, stride, padding;
     
-    public Integer getIn () {
-        return in;
-    }
-    
-    public void setIn (Integer in) {
-        this.in = in;
-    }
+   
     public String getLoss () {
         return loss;
     }
@@ -52,14 +46,6 @@ public class Layer {
     
     public void setActivation (String activation) {
         this.activation = activation;
-    }
-    
-    public Integer getChannels () {
-        return channels;
-    }
-    
-    public void setChannels (Integer channels) {
-        this.channels = channels;
     }
     
     public Integer getOut () {

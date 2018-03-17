@@ -20,10 +20,8 @@
 	"layers": [
 		{
 			"id": 0,
-			"in": 50,
 			"type": "init",
 			"name": "cnn1",
-			"channels": 3,
 			"out": 50,
 			"kernel": [5, 5],
 			"stride": [1, 1],

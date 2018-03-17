@@ -4,12 +4,13 @@ import com.jfoenix.controls.JFXTextArea;
 import java.io.IOException;
 import java.io.OutputStream;
 import javafx.application.Platform;
+import javafx.scene.control.TextArea;
 
 public class TextAreaOutputStream extends OutputStream {
     
-    private JFXTextArea textArea;
+    private TextArea textArea;
     
-    public TextAreaOutputStream (JFXTextArea textArea) {
+    public TextAreaOutputStream (TextArea textArea) {
         this.textArea = textArea;
     }
     
