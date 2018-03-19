@@ -250,7 +250,7 @@
       </AnchorPane>
       <AnchorPane fx:id="configPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
          <children>
-            <JFXButton fx:id="loadPreTrained" alignment="BASELINE_LEFT" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="120.0" prefHeight="41.0" prefWidth="228.0" text="Завантажити навчені моделі" textFill="WHITE">
+            <JFXButton fx:id="loadPreTrained" alignment="BASELINE_LEFT" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="159.0" prefHeight="41.0" prefWidth="228.0" text="Завантажити навчені моделі" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
@@ -258,7 +258,7 @@
                   <MaterialDesignIconView fill="WHITE" glyphName="ZIP_BOX" size="20" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="displayConfig" alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="20.0" layoutY="69.0" prefHeight="41.0" prefWidth="235.0" text="Поточна конфігурація" textFill="WHITE">
+            <JFXButton fx:id="displayConfig" alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="20.0" layoutY="108.0" prefHeight="41.0" prefWidth="235.0" text="Поточна конфігурація" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
@@ -266,14 +266,14 @@
                   <MaterialDesignIconView fill="WHITE" glyphName="EYE" size="20" />
                </graphic>
             </JFXButton>
-            <JFXCheckBox fx:id="saveModelAfterTraining" checkedColor="#bba6a6" contentDisplay="CENTER" layoutX="30.0" layoutY="286.0" text="Зберігати модель після навчання" textFill="WHITE" unCheckedColor="#867777" />
-            <Label layoutX="30.0" layoutY="480.0" prefHeight="19.0" prefWidth="97.0" text="Workspace:" textFill="WHITE">
+            <JFXCheckBox fx:id="saveModelAfterTraining" checkedColor="#bba6a6" contentDisplay="CENTER" layoutX="30.0" layoutY="325.0" text="Зберігати модель після навчання" textFill="WHITE" unCheckedColor="#867777" />
+            <Label layoutX="30.0" layoutY="384.0" prefHeight="19.0" prefWidth="97.0" text="Workspace:" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <JFXToggleButton fx:id="workspaceMode" layoutX="144.0" layoutY="460.0" text="SEP" textFill="WHITE" />
-            <JFXButton fx:id="loadCreated" alignment="BASELINE_LEFT" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="174.0" prefHeight="41.0" prefWidth="228.0" text="Завантажити створені моделі" textFill="WHITE">
+            <JFXToggleButton fx:id="workspaceMode" layoutX="144.0" layoutY="364.0" text="SEP" textFill="WHITE" />
+            <JFXButton fx:id="loadCreated" alignment="BASELINE_LEFT" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="213.0" prefHeight="41.0" prefWidth="228.0" text="Завантажити створені моделі" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
