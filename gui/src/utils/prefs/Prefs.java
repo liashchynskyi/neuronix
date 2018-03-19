@@ -123,7 +123,6 @@ public class Prefs {
         this.saveDir = save;
         this.workspaceMode = workspaceMode;
         this.trainIc = trainIc;
-     
     }
     
     public void set (String prop, String value) {
