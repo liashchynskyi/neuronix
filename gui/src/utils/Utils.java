@@ -154,19 +154,19 @@ public class Utils {
     }
     
     public static void updateProgress (Gauge gauge, int epoch, int numEpochs) {
-        new Thread(() -> {
+        Platform.runLater(() -> {
             double value = 0.0;
             value = (double) epoch / (double) numEpochs * 100;
             gauge.setValue(value);
-        }).start();
+        });
     }
     
     public static void updateProgress (JFXProgressBar bar, int image, int numImages) {
-        new Thread(() -> {
+        Platform.runLater(() -> {
             double value = 0.0;
             value = (double) image / (double) numImages * 100;
             bar.setProgress(value);
-        }).start();
+        });
     }
     
     public static void updateProgress (JFXProgressBar bar, JFXButton run, boolean runa) {

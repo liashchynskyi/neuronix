@@ -144,7 +144,7 @@ public class MainController implements Initializable {
     
     //Text Display Conf
     @FXML
-    private Text displayLoadDir, displaySaveDir;
+    private Text displayLoadDir, displaySaveDir, availableLabels;
     
     //Table
     @FXML
@@ -177,10 +177,17 @@ public class MainController implements Initializable {
         chooseModelController.populateLoadedCombo();
         
         initializeGauges();
+    
+        ResultsTableController resultsTableController = new ResultsTableController(tableResults, availableLabels);
+        
         TrainingController trainingController = new TrainingController(chooseModelController, epochsNumber, iterNumber, learningRateNumber, splitTrainTest,
                                                                        trainingGauge, log, prefs, trainingLabelProgress);
-        ClassificationController classificationController = new ClassificationController(chooseModelController, prefs,
-                                                                                         progressForestClassify, classifyForest);
+        ClassificationController classificationController = new ClassificationController(chooseModelController, resultsTableController, prefs,
+                                                                                         progressForestClassify,
+                                                                                         classifyForest,
+                                                                                         displayClassificationResults,
+                                                                                         stackS3,
+                                                                                         openNav3, descriptionOfThirdSection);
         
         defaultPaneSection2.toFront();
         defaultPaneSection3.toFront();

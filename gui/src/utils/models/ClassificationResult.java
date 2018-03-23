@@ -14,11 +14,11 @@ public class ClassificationResult {
     private StringProperty arrResults;
     private StringProperty result;
     
-    public ClassificationResult (StringProperty fileName, StringProperty arrResults,
-                                 StringProperty result) {
-        this.fileName = fileName;
-        this.arrResults = arrResults;
-        this.result = result;
+    public ClassificationResult (String fileName, String arrResults,
+                                 String result) {
+        this.fileName = new SimpleStringProperty(fileName);
+        this.arrResults = new SimpleStringProperty(arrResults);
+        this.result = new SimpleStringProperty(result);
     }
     
     public String getFileName () {

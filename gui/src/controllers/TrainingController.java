@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import eu.hansolo.medusa.Gauge;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Random;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -123,7 +124,10 @@ public class TrainingController {
                     Utils.updateTrainLabel(this.label, "Нормалізація даних...");
                     DataNormalization scaler = new ImagePreProcessingScaler(0, 1);
                     recordReader.initialize(trainData, transform);
-            
+                    
+                    List<String> labels = recordReader.getLabels();
+                    Integer numL = labels.size();
+                    
                     DataSetIterator dataIter = new RecordReaderDataSetIterator(recordReader, encoded.getBatchSize(),
                                                                                1, encoded.getNumLabels());
             
@@ -158,8 +162,23 @@ public class TrainingController {
                         Utils.updateTrainLabel(this.label, "Зберігання моделі...");
                         String basePath = prefs.getCurrentLoadDir();
                         ModelSerializer.writeModel(network,
-                                                   basePath + "\\" + encoded.getModelName() + "_" +
-                                                   encoded.getImageSize() + ".bin", true);
+                                                   basePath + "\\" + String.format("%s_%d_%d_%d.%s", encoded.getModelName(),
+                                                                                   encoded.getImageSize(),
+                                                                                   numL,
+                                                                                   Math.round(eval.accuracy() * 100.0),
+                        
+                                                                                 "bin"), true);
+                        Model meta = new Model();
+                        meta.setLabels(labels);
+                        meta.setNumLabels(numL);
+                        String enc = Utils.encodeJson(meta);
+                        File dir = new File(prefs.getCurrentSaveDir() + "\\meta");
+                        if (!dir.exists()) dir.mkdir();
+                        Utils.writeJSON(dir.getAbsolutePath() + "\\" + String.format("%s_%d_%d_%d.%s", encoded.getModelName(),
+                                                                                         encoded.getImageSize(),
+                                                                                         numL,
+                                                                                        Math.round(eval.accuracy() * 100.0),
+                                                                                        "json"), enc);
                     }
                     log.info("Training is done! Returning to main thread...");
                     Utils.updateTrainLabel(this.label, "Готово! Навчання завершено!");

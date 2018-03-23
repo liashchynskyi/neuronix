@@ -2,6 +2,7 @@ package controllers;
 
 import com.jfoenix.controls.JFXComboBox;
 import java.io.File;
+import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.List;
 import utils.prefs.Prefs;
@@ -19,11 +20,18 @@ public class ChooseModelController {
     }
     
     public List<String> getModels (boolean saved) {
+    
+        FileFilter fileFilter = new FileFilter() {
+            public boolean accept(File file) {
+                return file.isFile();
+            }
+        };
+        
         String modelsDir;
         if (saved) { modelsDir = prefs.getCurrentSaveDir(); }
         else { modelsDir = prefs.getCurrentLoadDir(); }
         List<String> results = new ArrayList<>();
-        File[]       files   = new File(modelsDir).listFiles();
+        File[]       files   = new File(modelsDir).listFiles(fileFilter);
         for (File file : files) {
             if (file.isFile()) {
                 results.add(file.getName());

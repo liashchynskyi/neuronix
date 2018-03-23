@@ -362,7 +362,7 @@
       <AnchorPane fx:id="displayClassificationResults" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;">
          <children>
             <MaterialDesignIconView fill="WHITE" glyphName="BOOKMARK_CHECK" layoutX="234.0" layoutY="99.0" size="42" />
-            <Text fx:id="displayLoadDir1" fill="WHITE" layoutX="39.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="[барани, бИкИ, кози, свині, качки, вівці]" textAlignment="CENTER" wrappingWidth="431.12110923975706">
+            <Text fx:id="availableLabels" fill="WHITE" layoutX="39.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="[барани, бИкИ, кози, свині, качки, вівці]" textAlignment="CENTER" wrappingWidth="431.12110923975706">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
