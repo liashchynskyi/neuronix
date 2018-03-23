@@ -35,6 +35,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -177,7 +179,8 @@ public class MainController implements Initializable {
         initializeGauges();
         TrainingController trainingController = new TrainingController(chooseModelController, epochsNumber, iterNumber, learningRateNumber, splitTrainTest,
                                                                        trainingGauge, log, prefs, trainingLabelProgress);
-        
+        ClassificationController classificationController = new ClassificationController(chooseModelController, prefs,
+                                                                                         progressForestClassify, classifyForest);
         
         defaultPaneSection2.toFront();
         defaultPaneSection3.toFront();
@@ -267,9 +270,27 @@ public class MainController implements Initializable {
             File             selectedDirectory = directoryChooser.showDialog(new Stage());
             trainingController.setImagesPath(selectedDirectory.getAbsolutePath());
         });
+    
+        chdirWithImages.setOnAction(e -> {
+            DirectoryChooser directoryChooser  = new DirectoryChooser();
+            File             selectedDirectory = directoryChooser.showDialog(new Stage());
+            classificationController.setImagesPath(selectedDirectory.getAbsolutePath());
+        });
+    
+        chSingleImage.setOnAction(e -> {
+            FileChooser fileChooser  = new FileChooser();
+            fileChooser.getExtensionFilters().clear();
+            fileChooser.getExtensionFilters().add(new ExtensionFilter("JPG images", "*.jpg"));
+            File        selectedFile = fileChooser.showOpenDialog(new Stage());
+            classificationController.setSingleImage(selectedFile.getAbsolutePath());
+        });
         
         runForestRun.setOnAction(e -> {
             trainingController.train(accuracyGauge, precisionGauge, recallGauge, f1Gauge);
+        });
+        
+        classifyForest.setOnAction(e -> {
+            classificationController.classify();
         });
         
     }

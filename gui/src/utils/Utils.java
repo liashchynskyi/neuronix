@@ -1,12 +1,15 @@
 package utils;
 
 import com.alibaba.fastjson.JSON;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTextArea;
 import com.sun.management.OperatingSystemMXBean;
 import eu.hansolo.medusa.Gauge;
 import eu.hansolo.medusa.GaugeBuilder;
 import eu.hansolo.tilesfx.Tile;
+import java.io.File;
+import java.io.FileFilter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -14,7 +17,9 @@ import java.lang.reflect.Field;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 import javafx.animation.Animation;
@@ -164,8 +169,16 @@ public class Utils {
         }).start();
     }
     
-    public static void updateProgress (JFXProgressBar bar) {
-        bar.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
+    public static void updateProgress (JFXProgressBar bar, JFXButton run, boolean runa) {
+        Platform.runLater(() -> {
+            if (runa) {
+                bar.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
+                run.setDisable(true);
+            } else {
+                bar.setProgress(0);
+                run.setDisable(false);
+            }
+        });
     }
     
     public static void updateScores (Gauge a, Gauge p, Gauge r, Gauge f, double[] scores) {
@@ -195,5 +208,26 @@ public class Utils {
     public static Model decodeJson(String json) {
         return JSON.parseObject(json, Model.class);
     }
+    
+    public static List<String> findFilesInDirectory (String directoryPath) {
+        File directory = new File(directoryPath);
+        
+        FileFilter fileFilter = new FileFilter() {
+            public boolean accept(File file) {
+                return file.isFile();
+            }
+        };
+        
+        File[] fileListAsFile = directory.listFiles(fileFilter);
+        String[] filesInDirectory = new String[fileListAsFile.length];
+        int index = 0;
+        for (File fileAsFile : fileListAsFile) {
+            filesInDirectory[index] = directoryPath + "\\" + fileAsFile.getName();
+            index++;
+        }
+        Arrays.sort(filesInDirectory);
+        return Arrays.asList(filesInDirectory);
+    }
+    
     
 }
