@@ -38,6 +38,7 @@ import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
 import org.nd4j.linalg.dataset.api.preprocessor.DataNormalization;
 import org.nd4j.linalg.dataset.api.preprocessor.ImagePreProcessingScaler;
 import org.slf4j.Logger;
+import utils.Mapper;
 import utils.Utils;
 import utils.models.json.JsonModelBuilder;
 import utils.models.json.Model;
@@ -81,6 +82,9 @@ public class TrainingController {
     public void train (Gauge a, Gauge p, Gauge r, Gauge f) {
         
         if (chooseModelController.getCurrentSavedModel() != null && getImagesPath() != null) {
+            Mapper.getButton("runForestRun").setDisable(true);
+            Utils.updateProgress(progress);
+            Utils.updateScores(a, p, r, f, new double[]{0, 0, 0, 0});
             new Thread(() -> {
                 try {
                     log.info("Build model from JSON...");
@@ -182,6 +186,9 @@ public class TrainingController {
                     }
                     log.info("Training is done! Returning to main thread...");
                     Utils.updateTrainLabel(this.label, "Готово! Навчання завершено!");
+                    Platform.runLater(() -> {
+                        Mapper.getButton("runForestRun").setDisable(false);
+                    });
                     return;
                 }
                 catch (IOException e) {

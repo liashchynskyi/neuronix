@@ -1,7 +1,6 @@
 package controllers;
 
 import static utils.Utils.createGauge;
-
 import com.alibaba.fastjson.JSON;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
@@ -20,6 +19,8 @@ import eu.hansolo.tilesfx.tools.FlowGridPane;
 import java.io.File;
 import java.lang.management.ManagementFactory;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Stack;
 import javafx.animation.TranslateTransition;
@@ -40,6 +41,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import utils.Mapper;
 import utils.Utils;
 import utils.models.ClassificationResult;
 import utils.prefs.Prefs;
@@ -87,6 +89,9 @@ public class MainController implements Initializable {
                         chSingleImage,
                         classifyForest;
     
+    
+    
+    
     //Checkboxes
     @FXML
     private JFXCheckBox saveModelAfterTraining;
@@ -103,6 +108,8 @@ public class MainController implements Initializable {
                     projectDescription,
                     appNameL,
                     trainingLabelProgress;
+    
+    
     
     //ComboBoxes
     @FXML
@@ -139,6 +146,7 @@ public class MainController implements Initializable {
                         classifierPaneSection3,
                         displayConfigPaneSection3,
                         displayClassificationResults;
+    
     @FXML
     private Pane flowScores;
     
@@ -166,6 +174,12 @@ public class MainController implements Initializable {
     
     @Override
     public void initialize (URL location, ResourceBundle resources) {
+        
+        this.putButtonsToMap();
+        this.putAnchorPanesToMap();
+        this.putLabelsToMap();
+        
+        
         
         Prefs prefs = new Prefs(saveModelAfterTraining,
                                 workspaceMode);
@@ -383,5 +397,46 @@ public class MainController implements Initializable {
         flowScores.getChildren()
                   .add(scores);
     }
+    
+    private void putButtonsToMap() {
+        Mapper.putButton("close", close);
+        Mapper.putButton("minimize", minimize);
+        Mapper.putButton("config", config);
+        Mapper.putButton("train", train);
+        Mapper.putButton("classifier", classifier);
+        Mapper.putButton("displayConfig", displayConfig);
+        Mapper.putButton("loadPreTrained", loadPreTrained);
+        Mapper.putButton("loadCreated", loadCreated);
+        Mapper.putButton("loadImages", loadImages);
+        Mapper.putButton("runForestRun", runForestRun);
+        Mapper.putButton("chdirWithImages", chdirWithImages);
+        Mapper.putButton("chSingleImage", chSingleImage);
+        Mapper.putButton("classifyForest", classifyForest);
+    }
+    
+    
+    private void putAnchorPanesToMap() {
+        Mapper.putAnchorPane("menuPane", menuPane);
+        Mapper.putAnchorPane("defaultPaneSection2", defaultPaneSection2);
+        Mapper.putAnchorPane("defaultPaneSection3", defaultPaneSection3);
+        Mapper.putAnchorPane("configPaneSection2", configPaneSection2);
+        Mapper.putAnchorPane("configPaneSection3", configPaneSection3);
+        Mapper.putAnchorPane("trainPaneSection2", trainPaneSection2);
+        Mapper.putAnchorPane("trainPaneSection3", trainPaneSection3);
+        Mapper.putAnchorPane("classifierPaneSection2", classifierPaneSection2);
+        Mapper.putAnchorPane("classifierPaneSection3", classifierPaneSection3);
+        Mapper.putAnchorPane("displayConfigPaneSection3", displayConfigPaneSection3);
+        Mapper.putAnchorPane("displayClassificationResults", displayClassificationResults);
+    }
+    
+    private void putLabelsToMap() {
+        Mapper.putLabel("appName",appName);
+        Mapper.putLabel("descriptionOfThirdSection",descriptionOfThirdSection);
+        Mapper.putLabel("descriptionOfSecondSection",descriptionOfSecondSection);
+        Mapper.putLabel("projectDescription",projectDescription);
+        Mapper.putLabel("appNameL",appNameL);
+        Mapper.putLabel("trainingLabelProgress",trainingLabelProgress);
+    }
+    
     
 }

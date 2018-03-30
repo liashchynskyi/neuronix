@@ -231,7 +231,7 @@
                   <Font size="13.0" />
                </font>
             </Text>
-            <JFXProgressBar fx:id="progressForestClassify" layoutX="155.0" layoutY="370.0" progress="0.35" />
+            <JFXProgressBar fx:id="progressForestClassify" layoutX="155.0" layoutY="370.0" progress="0.0" />
          </children></AnchorPane>
       <AnchorPane fx:id="configPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
          <children>

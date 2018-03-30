@@ -161,6 +161,13 @@ public class Utils {
         });
     }
     
+    public static void updateProgress (Gauge gauge) {
+        Platform.runLater(() -> {
+            double value = 0.0;
+            gauge.setValue(value);
+        });
+    }
+    
     public static void updateProgress (JFXProgressBar bar, int image, int numImages) {
         Platform.runLater(() -> {
             double value = 0.0;
