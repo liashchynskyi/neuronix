@@ -24,16 +24,14 @@ public class JsonModelBuilder {
     private Model             model;
     private ListBuilder       listBuilder;
     private MultiLayerNetwork network;
-    private Prefs             prefs;
     
-    public JsonModelBuilder (Model model, Prefs prefs) {
+    public JsonModelBuilder (Model model) {
         this.model = model;
-        this.prefs = prefs;
     }
     
     public JsonModelBuilder init (int iter, double lRate) {
         listBuilder = new NeuralNetConfiguration.Builder()
-            .trainingWorkspaceMode(prefs.currentWorkspaceStateProperty().getValue() ? WorkspaceMode.SINGLE : WorkspaceMode.SEPARATE)
+            .trainingWorkspaceMode(Prefs.currentWorkspaceStateProperty().getValue() ? WorkspaceMode.SINGLE : WorkspaceMode.SEPARATE)
             .seed(this.model.getSeed())
             .iterations(iter != 0  ? iter : this.model.getIterations())
             .dist(new NormalDistribution(0.0, 0.01))
