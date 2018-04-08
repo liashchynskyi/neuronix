@@ -99,48 +99,6 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="defaultPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
-         <children>
-            <Label fx:id="projectDescription" alignment="CENTER" layoutX="10.0" layoutY="161.0" prefHeight="20.0" prefWidth="251.0" text="Проект з відкритим вихідним кодом" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="appNameL" alignment="CENTER" layoutX="72.0" layoutY="185.0" prefHeight="20.0" prefWidth="125.0" text="Neuronix" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="71.0">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <FontAwesomeIconView fill="WHITE" glyphName="ANGLE_DOUBLE_DOWN" layoutX="124.0" layoutY="249.0" size="32" textAlignment="CENTER" />
-            <Hyperlink fx:id="developer" alignment="CENTER" layoutX="4.0" layoutY="276.0" prefHeight="23.0" prefWidth="259.0" text="Розроблений Петром Лящинським" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" />
-            <Hyperlink fx:id="copyright" alignment="CENTER" layoutX="39.0" layoutY="542.0" prefHeight="23.0" prefWidth="194.0" text="© ТНЕУ, ФКІТ, КІ - 2018" textAlignment="CENTER" textFill="#c6c0c0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0" />
-            <Hyperlink fx:id="github" alignment="CENTER" layoutX="79.0" layoutY="369.0" textAlignment="CENTER" textFill="WHITE">
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="GITHUB_SQUARE" size="24" textAlignment="CENTER" />
-               </graphic>
-            </Hyperlink>
-            <Hyperlink fx:id="facebook" alignment="CENTER" layoutX="120.0" layoutY="369.0" textAlignment="CENTER" textFill="WHITE">
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="FACEBOOK_SQUARE" size="24" textAlignment="CENTER" />
-               </graphic>
-            </Hyperlink>
-            <Hyperlink fx:id="linkedin" alignment="CENTER" layoutX="161.0" layoutY="369.0" textAlignment="CENTER" textFill="WHITE">
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="LINKEDIN_SQUARE" size="24" textAlignment="CENTER" />
-               </graphic>
-            </Hyperlink>
-            <MaterialDesignIconView fill="WHITE" glyphName="BRIGHTNESS_7" layoutX="119.0" layoutY="114.0" size="32" />
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="defaultPaneSection3" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;">
-         <children>
-            <Text fill="WHITE" layoutX="143.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Проект створений для класифікації зображень на основі згорткових нейронних мереж." textAlignment="CENTER" wrappingWidth="223.00000208616257">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
       <AnchorPane fx:id="trainPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
          <children>
             <JFXButton fx:id="loadImages" alignment="BASELINE_LEFT" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="143.0" prefHeight="41.0" prefWidth="228.0" text="Директорія із зображеннями" textFill="WHITE">
@@ -372,6 +330,34 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="defaultPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
+         <children>
+            <Label fx:id="projectDescription" alignment="CENTER" layoutX="7.0" layoutY="209.0" prefHeight="20.0" prefWidth="251.0" text="Проект з відкритим вихідним кодом" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="appNameL" alignment="CENTER" layoutX="72.0" layoutY="233.0" prefHeight="20.0" prefWidth="125.0" text="Neuronix" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="71.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Hyperlink fx:id="copyright" alignment="CENTER" layoutX="39.0" layoutY="542.0" prefHeight="23.0" prefWidth="194.0" text="© ТНЕУ, ФКІТ, КІ - 2018" textAlignment="CENTER" textFill="#c6c0c0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0" />
+            <Hyperlink fx:id="github" alignment="CENTER" layoutX="79.0" layoutY="369.0" textAlignment="CENTER" textFill="WHITE" />
+            <Hyperlink fx:id="facebook" alignment="CENTER" layoutX="120.0" layoutY="369.0" textAlignment="CENTER" textFill="WHITE" />
+            <Hyperlink fx:id="linkedin" alignment="CENTER" layoutX="161.0" layoutY="369.0" textAlignment="CENTER" textFill="WHITE" />
+            <FontAwesomeIconView fill="WHITE" glyphName="GITHUB_SQUARE" layoutX="124.0" layoutY="298.0" size="24" textAlignment="CENTER" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="defaultPaneSection3" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;">
+         <children>
+            <Text fill="WHITE" layoutX="143.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Проект створений для класифікації зображень на основі згорткових нейронних мереж." textAlignment="CENTER" wrappingWidth="223.00000208616257">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>
