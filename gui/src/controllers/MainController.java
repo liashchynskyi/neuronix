@@ -322,7 +322,7 @@ public class MainController implements Initializable {
                                   .prefSize(255, 255)
                                   .backgroundColor(Color.web("#755c62"))
                                   .skinType(Tile.SkinType.CUSTOM)
-                                  .title(TRAINING_PR)
+                                  .title("")
                                   .titleAlignment(TextAlignment.CENTER)
                                   .startFromZero(true)
                                   .graphic(trainingGauge)

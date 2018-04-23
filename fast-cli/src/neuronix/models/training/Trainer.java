@@ -186,6 +186,7 @@ public class Trainer {
                         Model meta = new Model();
                         meta.setLabels(labels);
                         meta.setNumLabels(numL);
+                        meta.setImageSize(encoded.getImageSize());
                         String enc = Utils.encodeJson(meta);
                         File dir = new File(Prefs.getCurrentSaveDir() + "\\meta");
                         if (!dir.exists()) dir.mkdir();
