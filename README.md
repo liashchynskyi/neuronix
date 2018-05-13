@@ -1,6 +1,5 @@
 <div align="center">
-<img src="https://i.imgur.com/W1iyehs.png">
-<br><br>
+<h1><img src="https://i.imgur.com/W1iyehs.png"></h1>
 <img src="	https://img.shields.io/github/license/liashchynskyi/neuronix.svg">
 <img src="https://img.shields.io/badge/java-1.8.0__151-lightgrey.svg">
 <img src="https://img.shields.io/badge/nd4j-v.0.9.1-red.svg">
