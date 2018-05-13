@@ -18,9 +18,9 @@
 - <a href="#system-requirements">System requirements</a>
 - <a href="#installation">Installation</a>
 - <a href="#how-to-build-a-model">How to build a model?</a>
+- <a href="#configuration">Configuration</a>
 - <a href="#training">Training</a>
 - <a href="#classification">Classification</a>
-- <a href="#configuration">Configuration</a>
 - <a href="#switching-to-gpu">Switching to GPU</a>
 
 
@@ -139,6 +139,18 @@ JsonModelBuilder  builder = new JsonModelBuilder(model);
 MultiLayerNetwork network = builder.init(0, 0).build();
 ```
 
+# Configuration
+Also you can define the following params by using a `Prefs` class.
+
+```java
+Prefs.setCurrentLoadDir("path"); //where json models are stored
+Prefs.setCurrentSaveDir("path"); //where trained .bin models are stored
+Prefs.setCurrentSaveState(true); //if true - your model will be saved after training
+Prefs.setCurrentWorkspaceState(false); // if true - set SINGLE workspace mode
+```
+
+[More](https://deeplearning4j.org/workspaces) about workspaces.
+
 # Training
 ```java
 Trainer trainer = new Trainer(200, 1, 1e-3, 80);
@@ -153,18 +165,6 @@ double[] results = trainer.train();
 Classifier classifier = new Classifier("path/to/images", "savedModelNameWithoutBinExtension", new Random(42));
 ObservableList<ClassificationResult> results = classifier.classify();
 ```
-
-# Configuration
-Also you can define the following params by using a `Prefs` class.
-
-```java
-Prefs.setCurrentLoadDir("path"); //where json models are stored
-Prefs.setCurrentSaveDir("path"); //where trained .bin models are stored
-Prefs.setCurrentSaveState(true); //if true - your model will be saved after training
-Prefs.setCurrentWorkspaceState(false); // if true - set SINGLE workspace mode
-```
-
-[More](https://deeplearning4j.org/workspaces) about workspaces.
 
 # Switching to GPU
 
