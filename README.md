@@ -136,7 +136,7 @@ Trainer trainer = new Trainer(200, 1, 1e-3, 80);
 trainer.setImagesPath('path/to/your/images/jpg');
 trainer.setPathToNeuralNetModel('your/json/model');
 trainer.setRandomSeed(42);
-trainer.train();
+double[] results = trainer.train();
 ```
 
 # Classification
