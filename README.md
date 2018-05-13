@@ -10,4 +10,13 @@
 <img src="https://i.imgur.com/eO3iDfK.png">
 </div>
 
-This project was developed for biomedical image classification.
+**Neuronix** is a program module was developed for biomedical image classification using **GPU** and convolutional neural networks.
+
+# Features
+
+ - Building your own CNN model or use [pre-trained](https://github.com/liashchynskyi/neuronix/tree/master/pre_trained)
+ - Saving/loading model to/from **json** file
+ - Separated classes to train and test your model
+ - Tune your model so as you want
+
+If you want to add something else -  all feature requests and contributions are welcome!
