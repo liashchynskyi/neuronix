@@ -7,7 +7,7 @@
 ---
 
 <div align="center">
-<img src="https://i.imgur.com/wFYRL1u.png">
+<img src="https://i.imgur.com/eO3iDfK.png">
 </div>
 
 This project was developed for biomedical image classification.
