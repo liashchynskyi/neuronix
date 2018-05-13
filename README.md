@@ -40,3 +40,107 @@ Before you begin need to install the following software on your computer:
  2. **cuDNN v6.0** library for CUDA 8.0 (download [here](https://developer.nvidia.com/rdp/cudnn-archive))
 
 If you have AMD CPU see [this](https://github.com/deeplearning4j/deeplearning4j/issues/4287) and [this](https://deeplearning4j.org/native#fallback-mode) to avoid mistakes :smirk:
+
+Then download JAR from [releases page](https://github.com/liashchynskyi/neuronix/releases) and add it to your project.
+
+# How to build a model?
+
+You can build your own models by this way.
+```java
+import neuronix.models.json.Layer;
+import neuronix.models.json.Model;
+import neuronix.utils.Utils;
+
+public class Test {
+    public static void main (String[] args) throws IOException {
+        Model model = new Model();
+        model.setModelName("CoolModel");
+        model.setImageSize(224);
+        model.setChannels(3);
+        model.setBatchSize(5);
+        model.setSeed(42);
+        model.setIterations(1);
+        model.setRegularization(true);
+        model.setL2(1e-54);
+        model.setLearningRate(1e-7);
+        model.setNumLabels(5);
+        model.setMiniBatch(true);
+        model.setActivation("relu");
+        model.setWeightInit("relu");
+        model.setGradientNormalization("RenormalizeL2PerLayer");
+        model.setOptimizationAlgo("STOCHASTIC_GRADIENT_DESCENT");
+        model.setUpdater("nesterovs");
+        model.setMomentum(0.9);
+
+        Layer initial = new Layer();
+        initial.setId(0);
+        initial.setType("init");
+        initial.setName("cnn1");
+        initial.setOut(50);
+        initial.setKernel(new int[]{5, 5});
+        initial.setStride(new int[]{1, 1});
+        initial.setPadding(new int[]{0, 0});
+        initial.setBias(0);
+
+        Layer pool1 = new Layer();
+        pool1.setId(1);
+        pool1.setType("pool");
+        pool1.setName("maxpool1");
+        pool1.setKernel(new int[]{2, 2});
+        pool1.setStride(new int[]{2, 2});
+
+        Layer conv2 = new Layer();
+        conv2.setId(2);
+        conv2.setType("conv");
+        conv2.setName("cnn1");
+        conv2.setOut(100);
+        conv2.setKernel(new int[]{5, 5});
+        conv2.setStride(new int[]{1, 1});
+        conv2.setPadding(new int[]{0, 0});
+        conv2.setBias(0);
+
+        Layer dense = new Layer();
+        dense.setId(3);
+        dense.setType("dense");
+        dense.setOut(500);
+        dense.setActivation("relu");
+
+        Layer output = new Layer();
+        output.setId(4);
+        output.setType("output");
+        output.setOut(5);
+        output.setActivation("softmax");
+        output.setLoss("NEGATIVELOGLIKELIHOOD");
+
+        model.addLayer(initial);
+        model.addLayer(pool1);
+        model.addLayer(conv2);
+        model.addLayer(dense);
+        model.addLayer(output);
+
+        String modeljson = Utils.encodeJson(model);
+        Utils.writeJSON("path", modeljson);
+    }
+}
+```
+
+Or you can load a previously created model as shown [here](https://github.com/liashchynskyi/neuronix/blob/master/json/generated.json). After that you can build your model:
+```java
+JsonModelBuilder  builder = new JsonModelBuilder(model);
+MultiLayerNetwork network = builder.init(0, 0).build();
+```
+
+# Training
+```java
+Trainer trainer = new Trainer(200, 1, 1e-3, 80);
+trainer.setImagesPath('path/to/your/images/jpg');
+trainer.setPathToNeuralNetModel('your/json/model');
+trainer.setRandomSeed(42);
+trainer.train();
+```
+
+# Classification
+```java
+Classifier classifier = new Classifier("path/to/images", "savedModelNameWithoutBinExtension", new Random(42));
+ObservableList<ClassificationResult> results = classifier.classify();
+```
