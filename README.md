@@ -155,4 +155,8 @@ Prefs.setCurrentSaveState(true); //if true - your model will be saved after trai
 Prefs.setCurrentWorkspaceState(false); // if true - set SINGLE workspace mode
 ```
 
-More about [workspaces](https://deeplearning4j.org/workspaces).
+## Switching to GPU
+
+Want to do it faster? Switch to GPU by setting system var `BACKEND_GPU_PRIORITY` to a higher value than `BACKEND_CPU_PRIORITY`. 
+
+[More](https://deeplearning4j.org/workspaces) about workspaces.
