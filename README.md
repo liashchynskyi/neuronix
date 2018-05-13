@@ -72,7 +72,7 @@ public class Test {
         model.setRegularization(true);
         model.setL2(1e-54);
         model.setLearningRate(1e-7);
-        model.setNumLabels(5);
+        model.setNumLabels(5); //number of output classes your model can predict
         model.setMiniBatch(true);
         model.setActivation("relu");
         model.setWeightInit("relu");
@@ -117,7 +117,7 @@ public class Test {
         Layer output = new Layer();
         output.setId(4);
         output.setType("output");
-        output.setOut(5);
+        output.setOut(5); //number of output classes your model can predict
         output.setActivation("softmax");
         output.setLoss("NEGATIVELOGLIKELIHOOD");
 
