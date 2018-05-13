@@ -144,3 +144,15 @@ trainer.train();
 Classifier classifier = new Classifier("path/to/images", "savedModelNameWithoutBinExtension", new Random(42));
 ObservableList<ClassificationResult> results = classifier.classify();
 ```
+
+# Configuration
+Also you can define the following params by using a `Prefs` class.
+
+```java
+Prefs.setCurrentLoadDir("path"); //where json models are stored
+Prefs.setCurrentSaveDir("path"); //where trained .bin models are stored
+Prefs.setCurrentSaveState(true); //if true - your model will be saved after training
+Prefs.setCurrentWorkspaceState(false); // if true - set SINGLE workspace mode
+```
+
+More about [workspaces](https://deeplearning4j.org/workspaces).
