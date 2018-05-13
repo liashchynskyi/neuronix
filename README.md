@@ -14,6 +14,16 @@
 
 **Neuronix** is a program module was developed for biomedical image classification using **GPU** and convolutional neural networks. Built with [DL4J](https://deeplearning4j.org/).
 
+- <a href="#features">Features</a>
+- <a href="#system-requirements">System requirements</a>
+- <a href="#installation">Installation</a>
+- <a href="#how-to-build-a-model">How to build a model?</a>
+- <a href="#training">Training</a>
+- <a href="#classification">Classification</a>
+- <a href="#configuration">Configuration</a>
+- <a href="#switching-to-gpu">Switching to GPU</a>
+
+
 # Features
 
  - Building your own CNN model or use [pre-trained](https://github.com/liashchynskyi/neuronix/tree/master/pre_trained)
