@@ -19,4 +19,15 @@
  - Separated classes to train and test your model
  - Tune your model so as you want
 
-If you want to add something else -  all feature requests and contributions are welcome!
+If you want to add something else ---  all feature requests and contributions are welcome!
+
+# System requirements
+To use this project, your computer must appropriates to these minimal requirements:
+
+ - Dual Core **CPU**, 2.5 Ghz (something like AMD Athlon 64 x2 4800+ or faster)
+ - 4 GB of **RAM** (you can even use **DDR2 RAM** but it's slightly **slower**)
+ - **GPU** with **2 GB** of memory and **CUDA 8.0** support
+
+And that's it :wink:
+
+# Installation
