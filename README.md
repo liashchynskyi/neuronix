@@ -8,8 +8,6 @@
 <img src="https://img.shields.io/badge/backend-cpu|gpu-green.svg">
 </div>
 
----
-
 <div align="center">
 <img src="https://i.imgur.com/eO3iDfK.png">
 </div>
