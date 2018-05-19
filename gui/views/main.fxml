@@ -148,39 +148,6 @@
                </graphic>
             </JFXButton>
          </children></AnchorPane>
-      <AnchorPane fx:id="classifierPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
-         <children>
-            <Label layoutX="30.0" layoutY="118.0" text="Оберіть модель для класифікації:" textFill="WHITE">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <JFXComboBox fx:id="chooseModelClassifier" focusColor="#dcdde1" layoutX="30.0" layoutY="153.0" prefHeight="25.0" prefWidth="208.0" promptText="Модель" unFocusColor="#7c5d5d" />
-            <JFXButton fx:id="chdirWithImages" alignment="BASELINE_LEFT" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="221.0" prefHeight="41.0" prefWidth="228.0" text="Директорія із зображеннями" textFill="WHITE">
-               <font>
-                  <Font size="13.0" />
-               </font>
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="FOLDER_IMAGE" size="20" />
-               </graphic>
-            </JFXButton>
-            <JFXButton fx:id="chSingleImage" alignment="BASELINE_LEFT" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="283.0" prefHeight="41.0" prefWidth="228.0" text="Файл зображення" textFill="WHITE">
-               <font>
-                  <Font size="13.0" />
-               </font>
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="IMAGE" size="20" />
-               </graphic>
-            </JFXButton>
-            <JFXButton fx:id="classifyForest" alignment="CENTER" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="375.0" prefHeight="41.0" prefWidth="228.0" text="СТАРТ" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font size="13.0" />
-               </font>
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="PLAY_BOX_OUTLINE" size="20" />
-               </graphic>
-            </JFXButton>
-         </children></AnchorPane>
       <AnchorPane fx:id="classifierPaneSection3" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;">
          <children>
             <MaterialDesignIconView fill="WHITE" glyphName="WEATHER_SUNNY" layoutX="239.0" layoutY="192.0" size="32.0" />
@@ -317,21 +284,6 @@
             <!--</Text>-->
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="displayClassificationResults" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;">
-         <children>
-            <MaterialDesignIconView fill="WHITE" glyphName="BOOKMARK_CHECK" layoutX="234.0" layoutY="99.0" size="42" />
-            <Text fx:id="availableLabels" fill="WHITE" layoutX="39.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="[барани, бИкИ, кози, свині, качки, вівці]" textAlignment="CENTER" wrappingWidth="431.12110923975706">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Text>
-            <TableView fx:id="tableResults" layoutX="54.0" layoutY="236.0" prefHeight="274.0" prefWidth="402.0">
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
-            </TableView>
-         </children>
-      </AnchorPane>
       <AnchorPane fx:id="defaultPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
          <children>
             <Label fx:id="projectDescription" alignment="CENTER" layoutX="7.0" layoutY="209.0" prefHeight="20.0" prefWidth="251.0" text="Проект з відкритим вихідним кодом" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0">
@@ -351,6 +303,21 @@
             <FontAwesomeIconView fill="WHITE" glyphName="GITHUB_SQUARE" layoutX="124.0" layoutY="298.0" size="24" textAlignment="CENTER" />
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="displayClassificationResults" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;">
+         <children>
+            <MaterialDesignIconView fill="WHITE" glyphName="BOOKMARK_CHECK" layoutX="234.0" layoutY="99.0" size="42" />
+            <Text fx:id="availableLabels" fill="WHITE" layoutX="39.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="[барани, бИкИ, кози, свині, качки, вівці]" textAlignment="CENTER" wrappingWidth="431.12110923975706">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <TableView fx:id="tableResults" layoutX="54.0" layoutY="236.0" prefHeight="274.0" prefWidth="402.0">
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="defaultPaneSection3" layoutX="491.0" layoutY="32.0" prefHeight="568.0" prefWidth="510.0" style="-fx-background-color: #755c62;">
          <children>
             <Text fill="WHITE" layoutX="143.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Проект створений для класифікації зображень на основі згорткових нейронних мереж." textAlignment="CENTER" wrappingWidth="223.00000208616257">
@@ -360,5 +327,46 @@
             </Text>
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="classifierPaneSection2" layoutX="223.0" layoutY="32.0" prefHeight="568.0" prefWidth="268.0" style="-fx-background-color: #6d565b;">
+         <children>
+            <Label layoutX="30.0" layoutY="118.0" text="Оберіть модель для класифікації:" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <JFXComboBox fx:id="chooseModelClassifier" focusColor="#dcdde1" layoutX="30.0" layoutY="153.0" prefHeight="25.0" prefWidth="208.0" promptText="Модель" unFocusColor="#7c5d5d" />
+            <JFXButton fx:id="chdirWithImages" alignment="BASELINE_LEFT" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="221.0" prefHeight="41.0" prefWidth="228.0" text="Директорія із зображеннями" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="FOLDER_IMAGE" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="chSingleImage" alignment="BASELINE_LEFT" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="283.0" prefHeight="41.0" prefWidth="228.0" text="Файл зображення" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="IMAGE" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="getFromCamera" alignment="BASELINE_LEFT" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="343.0" prefHeight="41.0" prefWidth="228.0" text="Зображення з камери" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="CAMERA" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="classifyForest" alignment="CENTER" cache="true" graphicTextGap="8.0" layoutX="20.0" layoutY="430.0" prefHeight="41.0" prefWidth="228.0" text="СТАРТ" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="PLAY_BOX_OUTLINE" size="20" />
+               </graphic>
+            </JFXButton>
+         </children></AnchorPane>
    </children>
 </AnchorPane>

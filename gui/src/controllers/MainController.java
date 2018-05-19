@@ -87,7 +87,8 @@ public class MainController implements Initializable {
                         runForestRun,
                         chdirWithImages,
                         chSingleImage,
-                        classifyForest;
+                        classifyForest,
+                        getFromCamera;
     
     
     
@@ -304,6 +305,13 @@ public class MainController implements Initializable {
             fileChooser.getExtensionFilters().add(new ExtensionFilter("JPG images", "*.jpg"));
             File        selectedFile = fileChooser.showOpenDialog(new Stage());
             classificationController.setSingleImage(selectedFile.getAbsolutePath());
+        });
+        
+        getFromCamera.setOnAction(e -> {
+            CameraController cameraController = new CameraController(224);
+            String singleImage = cameraController.videoStream();
+            classificationController.setSingleImage(singleImage);
+            classificationController.classify();
         });
         
         runForestRun.setOnAction(e -> {
