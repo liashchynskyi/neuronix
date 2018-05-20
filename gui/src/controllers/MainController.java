@@ -308,7 +308,7 @@ public class MainController implements Initializable {
         });
         
         getFromCamera.setOnAction(e -> {
-            CameraController cameraController = new CameraController(224);
+            CameraController cameraController = new CameraController(224, 30);
             String singleImage = cameraController.videoStream();
             classificationController.setSingleImage(singleImage);
             classificationController.classify();

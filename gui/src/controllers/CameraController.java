@@ -14,9 +14,11 @@ public class CameraController {
     
     int width = 0;
     double ratio = 1.37;
+    int fps = 30;
     
-    public CameraController (int width) {
+    public CameraController (int width, int fps) {
         this.width = width;
+        this.fps = fps;
     }
     
     public String videoStream () {
@@ -33,7 +35,7 @@ public class CameraController {
             else
                 namedWindow( "Microscope Cam", CV_WINDOW_AUTOSIZE);
             imshow("Microscope Cam", frame);
-            int c = cvWaitKey(1000/60);
+            int c = cvWaitKey(1000/fps);
             if (c == 27) {
                 cap.release();
                 destroyAllWindows();
