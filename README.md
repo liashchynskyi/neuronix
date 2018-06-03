@@ -31,6 +31,8 @@
  - Separated classes to train and test your model
  - Tune your model so as you want
 
+ > **Note:** The project uses RGB images of 224x224 pixels in JPG format.
+
 If you want to add something else &mdash;  all feature requests and contributions are welcome!
 
 # System requirements
