@@ -61,8 +61,8 @@ public class Eval {
     protected static final Logger log = LoggerFactory.getLogger(CG.class);
     protected static long seed = 42;
     protected static Random rng = new Random(seed);
-    protected static int height = 128;
-    protected static int width = 128;
+    protected static int height = 224;
+    protected static int width = 224;
     protected static int channels = 3;
     protected static int numLabels = 5;//6;
     protected static int batchSize = 5;
@@ -70,7 +70,7 @@ public class Eval {
     protected static int epochs = 20;
 
     public static void main(String[] args) throws IOException {
-        File parentDir = new File("T:/DISK_D/PETRO/Development/development/java/projects/cytology/untitled/src/main/hist");
+        File parentDir = new File("T:\\DISK_D\\PETRO\\Development\\development\\java\\projects\\cytology\\untitled\\src\\main\\cyt224");
 
         FileSplit filesInDir = new FileSplit(parentDir, NativeImageLoader.ALLOWED_FORMATS, rng);
         ParentPathLabelGenerator labelMaker = new ParentPathLabelGenerator();
@@ -100,9 +100,9 @@ public class Eval {
         scalerTest.fit(testIter);
         testIter.setPreProcessor(scalerTest);
 
-        String dir = FilenameUtils.concat(System.getProperty("user.dir"), "src/main/saved/");
+        String dir = FilenameUtils.concat("T:\\DISK_D\\PETRO\\Development\\development\\java\\projects\\neuronix\\pre_trained", "");
 
-        MultiLayerNetwork net = ModelSerializer.restoreMultiLayerNetwork(dir + "model.bin", true); //latestModel
+        MultiLayerNetwork net = ModelSerializer.restoreMultiLayerNetwork(dir + "\\lenet_20_a90_p93_r90_f89_is224_t20_c.bin", true); //latestModel
         Evaluation eval = new Evaluation(numLabels);
         while (testIter.hasNext()) {
             DataSet next = testIter.next();
