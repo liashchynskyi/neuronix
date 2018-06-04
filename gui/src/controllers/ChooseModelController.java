@@ -32,6 +32,7 @@ public class ChooseModelController {
         else { modelsDir = prefs.getCurrentLoadDir(); }
         List<String> results = new ArrayList<>();
         File[]       files   = new File(modelsDir).listFiles(fileFilter);
+        
         for (File file : files) {
             if (file.isFile()) {
                 results.add(file.getName());
