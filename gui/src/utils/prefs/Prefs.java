@@ -138,10 +138,9 @@ public class Prefs {
         prefs = Preferences.userRoot()
                            .node("Neuronix");
         
-        setCurrentLoadDir(prefs.get("loadDir", FilenameUtils.concat(System.getProperty("user.dir"),
-                                                                    "pre_trained")));
+        setCurrentLoadDir(prefs.get("loadDir", System.getProperty("user.dir")));
         setCurrentSaveDir(
-            prefs.get("saveDir", FilenameUtils.concat(System.getProperty("user.dir"), "saved")));
+            prefs.get("saveDir", System.getProperty("user.dir")));
         setCurrentSaveState(prefs.getBoolean("saveState", true));
         setCurrentWorkspaceState(prefs.getBoolean("workspaceState", false));
         

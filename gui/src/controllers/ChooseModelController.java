@@ -11,7 +11,7 @@ public class ChooseModelController {
     
     private Prefs       prefs;
     private JFXComboBox comboBoxSavedModel, comboBoxLoadedModel;
-    private String currentSavedModel = null, currentClassifierModel = null;
+    private String currentSavedModel = "", currentClassifierModel = "";
     
     public ChooseModelController (Prefs prefs, JFXComboBox savedCombo, JFXComboBox loadCombo) {
         this.prefs = prefs;
@@ -32,7 +32,7 @@ public class ChooseModelController {
         else { modelsDir = prefs.getCurrentLoadDir(); }
         List<String> results = new ArrayList<>();
         File[]       files   = new File(modelsDir).listFiles(fileFilter);
-        
+        if (files != null)
         for (File file : files) {
             if (file.isFile()) {
                 results.add(file.getName());

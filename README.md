@@ -50,7 +50,7 @@ Before you begin need to install the following software on your computer:
 
  1. **CUDA 8.0** library (download [here](https://developer.nvidia.com/cuda-toolkit-archive))
  2. **cuDNN v6.0** library for CUDA 8.0 (download [here](https://developer.nvidia.com/rdp/cudnn-archive))
- 3. **Java 8** (1.8.0_151 or newer, download [here](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html?printOnly=1))
+ 3. **Java 8** (1.8.0_101 or newer, download [here](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html?printOnly=1))
 
 If you have AMD CPU see [this](https://github.com/deeplearning4j/deeplearning4j/issues/4287) and [this](https://deeplearning4j.org/native#fallback-mode) to avoid mistakes :smirk: Then download JAR from [releases page](https://github.com/liashchynskyi/neuronix/releases) and add it to your project.
 
