@@ -22,6 +22,8 @@
 - <a href="#training">Training</a>
 - <a href="#classification">Classification</a>
 - <a href="#switching-to-gpu">Switching to GPU</a>
+- <a href="#memory-problems">Memory problems</a>
+- <a href="#fallback-mode">Fallback mode</a>
 
 
 # Features
@@ -31,7 +33,7 @@
  - Separated classes to train and test your model
  - Tune your model so as you want
 
- > **Note:** The project uses RGB images of 224x224 pixels in JPG format.
+ > **Note:** The project uses RGB images of 224x224 pixels in JPG format. If you want you may use [this converter](https://github.com/liashchynskyi/vertex) from PNG to JPG.
 
 If you want to add something else &mdash;  all feature requests and contributions are welcome!
 
