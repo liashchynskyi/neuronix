@@ -170,4 +170,13 @@ ObservableList<ClassificationResult> results = classifier.classify();
 
 # Switching to GPU
 
-Want to do it faster? Switch to GPU by setting system var `BACKEND_GPU_PRIORITY` to a higher value than `BACKEND_CPU_PRIORITY`.
+Want to do it faster? Switch to GPU by setting system var `BACKEND_PRIORITY_GPU` to a higher value than `BACKEND_PRIORITY_CPU`.
+
+# Memory problems
+
+If it throws an error try to run the program with these arguments (the values are based on your RAM size): `-Xms128m -XX:ReservedCodeCacheSize=240m -XX:+UseConcMarkSweepGC -XX:SoftRefLRUPolicyMSPerMB=50 -ea -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true -XX:+HeapDumpOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow -Dorg.bytedeco.javacpp.maxbytes=2500000000 -Dorg.bytedeco.javacpp.maxphysicalbytes=2500000000`
+
+# Fallback mode
+> Recently, we’ve discovered that on some platforms, popular BLAS-libraries can be unstable, causing crashes under different circumstances. To address that (and possible future issues as well), we’ve provided optional «fallback mode», which will cause ND4J to use in-house solutions as a workaround for possible issues. It acts as a «safe mode», well known for any modern-OS user.
+> To activate fallback mode you only need to set special environment variable: ND4J_FALLBACK. Set it to «true» or to 1 before launching your app. It’s possible to use this variable in an Apache Spark environment, as well as in a standalone app.
+> It is also possible to lower the level of optimization used by OpenBLAS, which is sometimes known to cause problems, by setting the OPENBLAS_CORETYPE environment variable to a value such as Athlon (for AMD processors) or Core2 (for Intel processors).
